@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Lab Collaborate <%= content_for?(:title) ? yield(:title) : "" %></title>
+  <%= stylesheet_link_tag :all %>
+	<%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js" %>
+  <%= javascript_include_tag 'rails' %>
+  <%= csrf_meta_tag %>
+</head>
+<body>
+	
+	<header>
+		<h1><%= link_to "LabCollaborate", root_path %></h1>
+		<nav>
+			<ul>
+				<% if user_signed_in? %>
+					<li><%= link_to "Signout", destroy_user_session_path %></li>
+				<% else %>
+					<li><%= link_to "Login", new_user_session_path %></li>
+					<li><%= link_to "Register", new_user_registration_path %></li>
+				<% end %>
+			</ul>
+		</nav>
+	</header>
+	
+	<div id="container">
+		<% flash.each do |name, msg| %>
+  	  <%= content_tag :div, raw(msg), :id => "flash_#{name}", :class => "flash" %>
+  	<% end %>
+  	
+		<%= yield %>
+	</div>
+
+</body>
+</html>

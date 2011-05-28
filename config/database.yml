@@ -1,0 +1,23 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: lab_dev
+  pool: 5
+  username: ryan
+  password: postgres
+
+test:
+    adapter: postgresql
+    encoding: unicode
+    database: lab_test
+    pool: 5
+    username: ryan
+    password: postgres
+
+production:
+    adapter: postgresql
+    encoding: unicode
+    database: lab_prod
+    pool: 5
+    username: ryan
+    password: postgres
