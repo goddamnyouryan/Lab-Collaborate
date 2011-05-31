@@ -29,6 +29,10 @@ GEM
       activesupport (= 3.0.5)
     activesupport (3.0.5)
     arel (2.0.10)
+    aws-s3 (0.6.2)
+      builder
+      mime-types
+      xml-simple
     bcrypt-ruby (2.1.4)
     builder (2.1.2)
     cancan (1.6.5)
@@ -45,7 +49,11 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.16)
+    nifty-generators (0.4.5)
     orm_adapter (0.0.5)
+    paperclip (2.3.8)
+      activerecord
+      activesupport
     pg (0.10.1)
     polyglot (0.3.1)
     rack (1.2.3)
@@ -61,6 +69,9 @@ GEM
       activesupport (= 3.0.5)
       bundler (~> 1.0)
       railties (= 3.0.5)
+    rails3-jquery-autocomplete (0.7.4)
+      rails (~> 3.0)
+      yajl-ruby
     railties (3.0.5)
       actionpack (= 3.0.5)
       activesupport (= 3.0.5)
@@ -73,13 +84,19 @@ GEM
     tzinfo (0.3.27)
     warden (1.0.4)
       rack (>= 1.0)
+    xml-simple (1.0.15)
+    yajl-ruby (0.8.2)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  aws-s3
   cancan
   devise
+  nifty-generators
+  paperclip
   pg
   rails (= 3.0.5)
+  rails3-jquery-autocomplete
   rake (~> 0.8.7)

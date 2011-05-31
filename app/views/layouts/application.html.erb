@@ -2,10 +2,11 @@
 <html>
 <head>
   <title>Lab Collaborate <%= content_for?(:title) ? yield(:title) : "" %></title>
-  <%= stylesheet_link_tag :all %>
+  <%= stylesheet_link_tag 'css' %>
 	<%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js" %>
   <%= javascript_include_tag 'rails' %>
   <%= csrf_meta_tag %>
+	<%= yield(:head) %>
 </head>
 <body>
 	
@@ -14,6 +15,8 @@
 		<nav>
 			<ul>
 				<% if user_signed_in? %>
+					<li>Welcome <%= current_user.name %></li>
+					<li><%= link_to "Account Settings", edit_user_registration_path %>
 					<li><%= link_to "Signout", destroy_user_session_path %></li>
 				<% else %>
 					<li><%= link_to "Login", new_user_session_path %></li>
@@ -22,6 +25,8 @@
 			</ul>
 		</nav>
 	</header>
+	
+	<div class="clear"></div>
 	
 	<div id="container">
 		<% flash.each do |name, msg| %>

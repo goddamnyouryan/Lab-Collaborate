@@ -1,0 +1,57 @@
+<h2 class="ts">People in this lab (<%= @laboratory.users.count %>):</h2>
+<ul class="bs">
+	<% @laboratory.users.each do |user| %>
+		<li>
+			<%= link_to user.name, user_path(user) %>
+		</li>
+	<% end %>
+</ul>
+
+<% if @laboratory.users.include?(current_user) %>
+	<%= render :partial => 'affiliates' %>
+<% end %>
+
+<h2 class="ts">Friends (<%= @laboratory.collaborators.count %>)</h2>
+<ul>
+	<% @laboratory.collaborators.each do |friend| %>
+		<li>
+			<%= link_to friend.name, laboratory_path(friend) %>
+		</li>
+	<% end %>
+</ul>
+<h2 class="ts">Protocols (<%= @laboratory.protocols.count %>)</h2>
+
+<ul>
+	<% @laboratory.protocols.each do |protocol| %>
+		<li>
+			<%= protocol.name %> - 
+			<%= link_to "Download", protocol.attachment.url(:original, false) %>
+		</li>
+	<% end %>
+</ul>
+
+<h2 class="ts">Add New Protocol</h2>
+<%= form_for @protocol, :html => { :multipart => true } do |f| %>
+<p><%= f.label :name %><br />
+<%= f.text_field :name %></p>
+	<p><%= f.label :attachment %><br />
+	<%= f.file_field :attachment %></p>
+  <p><%= f.submit "Share Protocol" %></p>
+<% end %>
+
+<h2 class="ts">Whiteboard</h2>
+<% form_for @whiteboard do |f| %>
+<%= f.hidden_field :laboratory_id, :value => @laboratory.id %>
+<p><%= f.label :new_message %><br />
+<%= f.text_area :message, :style => "height:100px;" %></p>
+<p><%= f.submit "Post" %></p>
+<% end %>
+
+<ul class="ts">
+	<% @laboratory.whiteboards.reverse.each do |whiteboard| %>
+		<li>
+			<p><%= whiteboard.message%></p>
+			<%= link_to whiteboard.user.name, user_path(whiteboard.user) %>
+		</li>
+	<% end %>
+</ul>

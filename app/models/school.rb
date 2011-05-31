@@ -1,4 +1,4 @@
 class School < ActiveRecord::Base
-  has_many :laboritories
+  has_many :laboratories
   has_many :users
 end

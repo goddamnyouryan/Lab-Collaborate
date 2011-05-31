@@ -1,0 +1,15 @@
+<% title "Find Your Lab" %>
+
+<h2 class="bs">Find Your Lab</h2>
+
+<h3 class="ts bs">All Labs at <%= current_user.school.name %> (<%= @labs.count %>):</h3>
+
+<ul class="ts bs">
+	<% @labs.each do |lab| %>
+		<li>
+			<%= link_to lab.name, lab %>
+		</li>
+	<% end %>
+</ul>
+	
+<h3>Don't see your lab listed here? <%= link_to "Create It!", new_laboratory_path %></h3>

@@ -1,0 +1,33 @@
+<% if !current_user.laboratory.nil? %>
+<div id="friend">
+	<%= render :partial => 'friend' %>
+</div>
+<% end %>
+
+<% if current_user.pending_laboratory == @laboratory %>
+	<p>You are waiting approval by an admin to be admitted to this lab page.</p>
+<% elsif !@laboratory.users.include?(current_user) && current_user.laboratory.nil? && current_user.pending_laboratory.nil? %>
+	<%= link_to "I work in this lab", add_affiliate_path(:laboratory_id => @laboratory.id)%>
+<% end %>
+
+<h2 class="ts">People in this lab (<%= @laboratory.users.count %>):</h2>
+<ul class="bs">
+	<% @laboratory.users.each do |user| %>
+		<li>
+			<%= link_to user.name, user_path(user) %>
+		</li>
+	<% end %>
+</ul>
+
+<% if @laboratory.users.include?(current_user) %>
+	<%= render :partial => 'affiliates' %>
+<% end %>
+
+<h2>Friends (<%= @laboratory.collaborators.count %>)</h2>
+<ul>
+	<% @laboratory.collaborators.each do |friend| %>
+		<li>
+			<%= link_to friend.name, laboratory_path(friend) %>
+		</li>
+	<% end %>
+</ul>

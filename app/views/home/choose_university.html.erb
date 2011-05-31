@@ -1,1 +1,10 @@
 <% title "Please Choose Your University" %>
+<% javascript 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/jquery-ui.min.js' %>
+<% javascript 'autocomplete-rails.js' %>
+
+<h2 class="bs">What university / organization are you affiliated with?</h2>
+
+<%= form_tag 'home/update_school' do %>
+  <%= autocomplete_field_tag 'school_id', '', autocomplete_school_name_schools_path	, :size => 40 %>
+	<%= submit_tag "Next Step" %>
+<% end %>

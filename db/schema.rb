@@ -10,12 +10,41 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110528051133) do
+ActiveRecord::Schema.define(:version => 20110530203957) do
+
+  create_table "affiliations", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "laboratory_id"
+    t.string   "status",        :default => "pending", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "friends", :force => true do |t|
+    t.integer  "laboratory_id"
+    t.integer  "friend_id"
+    t.integer  "user_id"
+    t.string   "status",        :default => "pending", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "laboratories", :force => true do |t|
     t.string   "name"
     t.integer  "school_id"
     t.text     "info"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "protocols", :force => true do |t|
+    t.string   "name"
+    t.integer  "laboratory_id"
+    t.integer  "user_id"
+    t.string   "attachment_file_name"
+    t.string   "attachment_content_type"
+    t.integer  "attachment_file_size"
+    t.datetime "attachment_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -48,5 +77,13 @@ ActiveRecord::Schema.define(:version => 20110528051133) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "whiteboards", :force => true do |t|
+    t.text     "message"
+    t.integer  "user_id"
+    t.integer  "laboratory_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

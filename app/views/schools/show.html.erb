@@ -1,0 +1,11 @@
+<% title "#{@school.name}" %>
+
+<h2><%= @school.name %></h2>
+
+<ul>
+	<% @laboratories.each do |lab| %>
+		<li>
+			<%= link_to lab.name, laboratory_path(lab) %>
+		</li>
+	<% end %>
+</ul>

@@ -1,0 +1,15 @@
+<% title "#{@user.name}'s Profile"%>
+
+<h2><%= @user.name %></h2>
+<h3>
+	<%= link_to @user.school.name, school_path(@user.school) %> - 
+	<%= link_to @user.laboratory.name, laboratory_path(@user.laboratory) %>
+</h3>
+
+<h2 class="ts">Contact Info</h2>
+
+<p>
+	Email: <%= @user.email %><br />
+	Address: <%= @user.address %><br />
+	Phone Number: <%= @user.phone %><br />
+</p>

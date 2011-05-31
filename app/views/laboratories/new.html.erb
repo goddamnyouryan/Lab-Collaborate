@@ -1,0 +1,14 @@
+<% title "New Lab" %>
+
+<% form_for @laboratory do |f| %>
+
+<p><%= f.label :name %><br />
+<%= f.text_field :name %></p>
+
+<p><%= f.label :information_about_this_lab %><br />
+<%= f.text_area :info %></p>
+
+
+<p><%= f.submit "Create Lab" %></p>
+
+<% end %>
