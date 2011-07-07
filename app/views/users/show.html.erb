@@ -1,15 +1,31 @@
 <% title "#{@user.name}'s Profile"%>
 
-<h2><%= @user.name %></h2>
-<h3>
-	<%= link_to @user.school.name, school_path(@user.school) %> - 
-	<%= link_to @user.laboratory.name, laboratory_path(@user.laboratory) %>
-</h3>
+<%= image_tag @user.photo.url(:main), :class => "fl" %>
 
-<h2 class="ts">Contact Info</h2>
-
-<p>
-	Email: <%= @user.email %><br />
-	Address: <%= @user.address %><br />
-	Phone Number: <%= @user.phone %><br />
-</p>
+<div class="fl" style="margin-left:10px;">
+	
+	<h2><%= @user.name %></h2>
+	<h3>
+		<%= link_to @user.school.name, school_path(@user.school) %> - 
+		<%= link_to @user.laboratory.name, laboratory_path(@user.laboratory) %>
+	</h3>
+	
+	<% if @user == current_user %>
+		<%= link_to "edit my info", edit_user_registration_path %>
+	
+	<% elsif @user.laboratory == current_user.laboratory && current_user.role == "admin" && @user.role != "admin" %>
+		<%= link_to "Make Admin", make_admin_path(:user_id => @user.id), :confirm => "Are you sure you want to make #{@user.name} an admin?" %>
+	<% elsif @user.laboratory == current_user.laboratory && current_user.role == "admin" && @user.role == "admin" %>
+		Is an admin.
+	<% end %>
+	
+	<h2 class="ts">Contact Info</h2>
+	
+	<p>
+		Email: <%= @user.email %><br />
+		Address: <%= @user.address %><br />
+		Phone Number: <%= @user.phone %><br />
+	</p>
+	
+</div>
+<div class="clear"></div>

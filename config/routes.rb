@@ -14,13 +14,18 @@ Lab::Application.routes.draw do
   match '/add_friend', :to => 'laboratories#add_friend'
   match '/accept_friend', :to => 'laboratories#accept_friend'
   match '/decline_friend', :to => 'laboratories#decline_friend'
+  match '/invite-lab-members', :to => 'laboratories#invite_lab', :as => "invite_lab"
+  match '/send-invites', :to => 'laboratories#send_invites'
+  match '/make-admin', :to => 'users#make_admin', :as => "make_admin"
   
   resources :schools do
     get :autocomplete_school_name, :on => :collection
   end
   
   resources :users, :only => ["show"]
-  resources :laboratories
+  resources :laboratories do
+    resources :inventories
+  end
   resources :protocols
   resources :whiteboards
   

@@ -1,0 +1,24 @@
+<% title "Orders for #{@laboratory.name}" %>
+
+<h2>Orders for <%= @laboratory.name %></h2>
+
+<p class="bs"><%= link_to "Place new order", new_laboratory_inventory_path %></p>
+
+<table width="98%" border="0" cellpadding="5" cellspacing="2" class="border-table" style="margin:auto;">
+  <tr style="font-weight:bold;">
+		<td align="center">id</td>
+		<td align="center">Vendor</td>
+		<td align="center">Catalog #</td>
+    <td align="center">Description</td>
+		<td align="center">Ordered By</td>
+		<td align="center">Date Ordered</td>
+  </tr>
+<% for inventory in @inventories %>	
+	<tr>
+		<td align="center"><%= inventory.id %></td>
+		<td align="center"><%= inventory.vendor %></td>
+		<td align="center"><%= inventory.catalog %></td>
+		<td align="center"><%= inventory.description %></td>
+		<td align="center"><%= link_to inventory.user.name, user_path(inventory.user) %></td>
+		<td align="center"><%= time_ago_in_words(inventory.created_at) %> ago</td>
+<% end %>

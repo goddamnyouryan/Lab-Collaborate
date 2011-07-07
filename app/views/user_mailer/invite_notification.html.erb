@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<link href="http://labcollaborate.heroku.com/stylesheets/css.css" media="screen" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <h1><a href="http://www.labcollaborate.com/"><img src="http://labcollaborate.heroku.com/images/logo.png" alt="Lab Collaborate"></a></h1>
+    <p>
+      Dear <%= @user.name %>,
+    </p>
+    <p>
+      <%= @inviter.name %>, your lab colleague, has signed you up for Lab Collaborate, the premiere lab-centric social networking site on the web:
+    </p>
+
+		<p>To sign in and get started visit the <%= link_to "site", root_url %>, and login with these credentials:</p>
+			
+		<p><strong>Email Address:</strong> <%= @user.email %></p>
+		<p><strong>Password:</strong> <%= @password %></p>
+		
+		<p>Once you login, you'll probably want to change your password to something more memorable!</p>
+		
+		<p>Have fun!<br />
+			The Lab Collaborate Team</p>
+
+  </body>
+</html>
+

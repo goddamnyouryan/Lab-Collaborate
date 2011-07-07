@@ -5,7 +5,7 @@ class WhiteboardsController < ApplicationController
     @whiteboard.laboratory_id = @laboratory.id
     @whiteboard.user_id = current_user.id
     if @whiteboard.save
-      redirect_to @laboratory
+      redirect_to @laboratory, :notice => "message posted!"
     end
   end
 

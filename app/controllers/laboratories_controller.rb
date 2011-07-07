@@ -11,7 +11,8 @@ class LaboratoriesController < ApplicationController
     @laboratory.update_attributes(:school_id => current_user.school_id)
     @affiliation = Affiliation.create(:user_id => current_user.id, :laboratory_id => @laboratory.id, :status => "accepted")
     if @laboratory.save
-      redirect_to @laboratory, :notice => "Created #{@laboratory.name}!"
+      current_user.make_admin
+      redirect_to invite_lab_path, :notice => "Created #{@laboratory.name}!"
     end
   end
 
@@ -28,6 +29,20 @@ class LaboratoriesController < ApplicationController
     @laboratory = Laboratory.find params[:id]
     @protocol = Protocol.new
     @whiteboard = Whiteboard.new
+  end
+  
+  def invite_lab
+  end
+  
+  def send_invites
+    @emails = params[:emails].gsub(/\s+/, "").split(",")
+    @emails.each do |email|
+      password = ActiveSupport::SecureRandom.base64(6)
+      user = User.create(:email => email, :password => password, :password_confirmation => password, :school_id => current_user.school_id)
+      affiliation = Affiliation.create(:user_id => user.id, :laboratory_id => current_user.laboratory.id, :status => "accepted")
+      UserMailer.deliver_invite_notification(user, current_user, password)
+    end
+    redirect_to root_path, :notice => "Signed Colleagues up as members of your lab!"
   end
   
   def add_affiliate
