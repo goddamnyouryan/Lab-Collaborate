@@ -30,4 +30,12 @@ class Laboratory < ActiveRecord::Base
 	  @friend1.destroy
 	  @friend2.destroy
   end
+  
+  def remove_friendship(friend)
+    @friend1 = Friend.find_by_laboratory_id_and_friend_id(self.id, friend.id)
+	  @friend2 = Friend.find_by_laboratory_id_and_friend_id(friend.id, self.id)
+	  @friend1.destroy
+	  @friend2.destroy
+  end
+  
 end

@@ -1,0 +1,31 @@
+<% if inventory.status == "pending" %>
+	<tr id="inventory_<%= inventory.id %>">
+		<td align="center"><%= inventory.id %></td>
+		<td align="center"><%= inventory.vendor %></td>
+		<% if inventory.url == "" || inventory.url.nil? %>
+			<td align="center"><%= inventory.catalog %></td>
+		<% else %>
+			<td align="center"><a href="<%= inventory.url %>" target="_blank"><%= inventory.catalog %></a></td>
+		<% end %>
+		<td align="center"><%= inventory.description %></td>
+		<td align="center"><%= link_to inventory.user.name, user_path(inventory.user) %></td>
+		<td align="center"><%= time_ago_in_words(inventory.created_at) %> ago</td>
+		<td align="center">n/a</td>
+		<% if current_user.role == "admin" %>
+			<td align="center" id="order_<%= inventory.id %>"><%= link_to "Mark as Ordered", mark_as_ordered_path(:inventory_id => inventory.id), :remote => true %></td>
+		<% end %>
+	</tr>
+<% elsif inventory.status == "ordered" %>
+	<tr class="ordered">
+		<td align="center"><%= inventory.id %></td>
+		<td align="center"><%= inventory.vendor %></td>
+		<td align="center"><%= inventory.catalog %></td>
+		<td align="center"><%= inventory.description %></td>
+		<td align="center"><%= link_to inventory.user.name, user_path(inventory.user) %></td>
+		<td align="center"><%= time_ago_in_words(inventory.created_at) %> ago</td>
+		<td align="center"><%= time_ago_in_words(inventory.updated_at) %> ago</td>
+		<% if current_user.role == "admin" %>
+			<td align="center">order placed</td>
+		<% end %>
+	</tr>
+<% end %>

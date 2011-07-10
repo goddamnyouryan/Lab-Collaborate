@@ -10,5 +10,11 @@ class ProtocolsController < ApplicationController
       redirect_to root_path, :notice => "Something went wrong. Try again!"
     end
   end
+  
+  def destroy
+    @protocol = Protocol.find params[:id]
+    @protocol.destroy
+    redirect_to root_path, :notice => "Protocol Removed!"
+  end
 
 end

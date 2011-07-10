@@ -14,7 +14,8 @@
 		<%= link_to "edit my info", edit_user_registration_path %>
 	
 	<% elsif @user.laboratory == current_user.laboratory && current_user.role == "admin" && @user.role != "admin" %>
-		<%= link_to "Make Admin", make_admin_path(:user_id => @user.id), :confirm => "Are you sure you want to make #{@user.name} an admin?" %>
+		<%= link_to "Make Admin", make_admin_path(:user_id => @user.id), :confirm => "Are you sure you want to make #{@user.name} an admin?" %><br />
+		<%= link_to "Remove User", remove_affiliate_path(:user_id => @user.id, :laboratory_id => @user.laboratory.id ), :confirm => "Are you sure you want to remove #{@user.name} from your lab?" %>
 	<% elsif @user.laboratory == current_user.laboratory && current_user.role == "admin" && @user.role == "admin" %>
 		Is an admin.
 	<% end %>

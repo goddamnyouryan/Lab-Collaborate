@@ -7,6 +7,7 @@
 
 <% if @laboratory.users.include?(current_user) %>
 	<%= link_to "Place Order for Inventory", laboratory_inventories_path(@laboratory) %>
+	
 	<%= render :partial => 'affiliates' %>
 <% end %>
 
@@ -25,6 +26,9 @@
 		<li>
 			<%= protocol.name %> - 
 			<%= link_to "Download", protocol.attachment.url(:original, false) %>
+			<% if current_user.role == "admin" || current_user.protocols.include?(protocol) %>
+			  -	<%= link_to "Delete", protocol, :method => :delete %>
+			<% end %>
 		</li>
 	<% end %>
 </ul>

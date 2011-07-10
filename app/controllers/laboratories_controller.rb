@@ -67,6 +67,13 @@ class LaboratoriesController < ApplicationController
     redirect_to root_path, :notice => "#{@user.name} declined."
   end
   
+  def remove_affiliate
+    @affiliation = Affiliation.find_by_user_id_and_laboratory_id(params[:user_id], params[:laboratory_id])
+    @affiliation.destroy
+    @user = User.find params[:user_id]
+    redirect_to root_path, :notice => "#{@user.name} removed."
+  end
+  
   def add_friend
     @laboratory = current_user.laboratory
     @friend = Laboratory.find params[:laboratory_id]
@@ -88,6 +95,13 @@ class LaboratoriesController < ApplicationController
     @laboratory = current_user.laboratory
     @friend = Laboratory.find params[:laboratory_id]
     @laboratory.decline_friendship(@friend)
+    redirect_to root_path, :notice => "Friendship with #{@laboratory.name} declined."
+  end
+  
+  def remove_friend
+    @laboratory = current_user.laboratory
+    @friend = Laboratory.find params[:laboratory_id]
+    @laboratory.remove_friendship(@friend)
     redirect_to root_path, :notice => "Friendship with #{@laboratory.name} declined."
   end
   

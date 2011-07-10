@@ -100,4 +100,6 @@ header h1 a { display: block; width: 300px; height: 38px;}
 }
 .ui-autocomplete li:hover { cursor:pointer; }
 
+.ordered { background-color: yellow; }
+
 ul#users li { float: left; margin-right: 15px; text-align:center;}

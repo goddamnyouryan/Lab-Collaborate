@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   belongs_to :school
   has_many :whiteboards
   has_many :inventories
+  has_many :protocols
   has_one :affiliation
   has_one :laboratory, :through => :affiliation, :conditions => "status = 'accepted'"
   has_one :pending_laboratory, :through => :affiliation, :source => :laboratory, :conditions => "status ='pending'"
