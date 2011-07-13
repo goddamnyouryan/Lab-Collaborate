@@ -1,60 +1,10 @@
-<%= render :partial => 'users' %>
 
-<% if @laboratory.users.include?(current_user) && current_user.role == "admin" %>
-	<%= link_to "Invite your colleagues to join your lab", invite_lab_path, :class => "ts fl" %><br />
-	<div class="clear"></div>
-<% end %>
+<%= render :partial => 'mylabsidenav' %>
 
-<% if @laboratory.users.include?(current_user) %>
-	<%= link_to "Place Order for Inventory", laboratory_inventories_path(@laboratory) %>
+<div class="fl">
+
+	<%= render :partial => 'users' %>
 	
-	<%= render :partial => 'affiliates' %>
-<% end %>
+	<%= render :partial => 'whiteboard' %>
 
-<h2 class="ts">Friends (<%= @laboratory.collaborators.count %>)</h2>
-<ul>
-	<% @laboratory.collaborators.each do |friend| %>
-		<li>
-			<%= link_to friend.name, laboratory_path(friend) %>
-		</li>
-	<% end %>
-</ul>
-<h2 class="ts">Protocols (<%= @laboratory.protocols.count %>)</h2>
-
-<ul>
-	<% @laboratory.protocols.each do |protocol| %>
-		<li>
-			<%= protocol.name %> - 
-			<%= link_to "Download", protocol.attachment.url(:original, false) %>
-			<% if current_user.role == "admin" || current_user.protocols.include?(protocol) %>
-			  -	<%= link_to "Delete", protocol, :method => :delete %>
-			<% end %>
-		</li>
-	<% end %>
-</ul>
-
-<h2 class="ts">Add New Protocol</h2>
-<%= form_for @protocol, :html => { :multipart => true } do |f| %>
-<p><%= f.label :name %><br />
-<%= f.text_field :name %></p>
-	<p><%= f.label :attachment %><br />
-	<%= f.file_field :attachment %></p>
-  <p><%= f.submit "Share Protocol" %></p>
-<% end %>
-
-<h2 class="ts">Whiteboard</h2>
-<% form_for @whiteboard do |f| %>
-<%= f.hidden_field :laboratory_id, :value => @laboratory.id %>
-<p><%= f.label :new_message %><br />
-<%= f.text_area :message, :style => "height:100px;" %></p>
-<p><%= f.submit "Post" %></p>
-<% end %>
-
-<ul class="ts">
-	<% @laboratory.whiteboards.reverse.each do |whiteboard| %>
-		<li>
-			<p><%= whiteboard.message%></p>
-			<%= link_to whiteboard.user.name, user_path(whiteboard.user) %>
-		</li>
-	<% end %>
-</ul>
+</div>

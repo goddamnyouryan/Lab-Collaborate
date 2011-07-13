@@ -1,0 +1,22 @@
+<% title "Members of #{@laboratory.name}" %>
+
+<%= render :partial => 'mylabsidenav' %>
+
+<div class="fl">
+
+	<h2>Members of <%= @laboratory.name %></h2>
+
+	<ul class="bs">
+		<% @laboratory.users.each do |user| %>
+			<li>
+				<%= link_to user_path(user) do %>
+					<%= image_tag user.photo.url(:thumb) %>
+				<% end %>
+				<%= link_to user.name, user_path(user) %>
+			</li>
+		<% end %>
+	</ul>
+	
+</div>
+
+<div class="clear"></div>

@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   has_one :laboratory, :through => :affiliation, :conditions => "status = 'accepted'"
   has_one :pending_laboratory, :through => :affiliation, :source => :laboratory, :conditions => "status ='pending'"
   
-  has_attached_file :photo, :styles => { :thumb => "90x90#", :main => "180x300>" }, 
+  has_attached_file :photo, :styles => { :thumb => "90x90#", :main => "180x300>", :tiny => "30x30#" }, 
                             :storage => :s3, 
                             :s3_credentials => "#{RAILS_ROOT}/config/s3.yml", 
                             :path => ':id/:style',

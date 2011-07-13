@@ -1,0 +1,30 @@
+<div class="fl sidenav">
+
+	<% title "#{@laboratory.name}" %>
+	
+	<h1><%= @laboratory.name %></h1>
+	<h3><%= link_to @laboratory.school.name, school_path(@laboratory.school) %></h3>
+	<nav id="laboratory">
+		<ul>
+			<li><%= link_to_unless_current "Whiteboard", @laboratory %></li>
+			<li><%= link_to_unless_current "Lab Members", laboratory_members_path(@laboratory) %></li>
+			<li><%= link_to_unless_current "Protocols", laboratory_protocols_path(@laboratory) %></li>
+			<li><%= link_to_unless_current "Order Inventory", laboratory_inventories_path(@laboratory) %></li>
+			<% if current_user.role == "admin" %>
+				<li><%= link_to_unless_current "Invite Lab Mates", laboratory_invite_path(@laboratory) %></li>
+			<% end %>
+		</ul>
+	</nav>
+	
+	<%= render :partial => 'affiliates' %>
+	
+	<h2 class="ts">Friends (<%= @laboratory.collaborators.count %>)</h2>
+	<ul>
+		<% @laboratory.collaborators.each do |friend| %>
+			<li>
+				<%= link_to friend.name, laboratory_path(friend) %>
+			</li>
+		<% end %>
+	</ul>
+
+</div>

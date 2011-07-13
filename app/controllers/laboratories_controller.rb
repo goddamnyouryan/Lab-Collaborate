@@ -12,7 +12,7 @@ class LaboratoriesController < ApplicationController
     @affiliation = Affiliation.create(:user_id => current_user.id, :laboratory_id => @laboratory.id, :status => "accepted")
     if @laboratory.save
       current_user.make_admin
-      redirect_to invite_lab_path, :notice => "Created #{@laboratory.name}!"
+      redirect_to laboratory_invite_path(@laboratory), :notice => "Created #{@laboratory.name}!"
     end
   end
 
@@ -27,11 +27,21 @@ class LaboratoriesController < ApplicationController
   
   def show
     @laboratory = Laboratory.find params[:id]
-    @protocol = Protocol.new
+    
     @whiteboard = Whiteboard.new
   end
   
-  def invite_lab
+  def protocols
+    @laboratory = Laboratory.find params[:laboratory_id]
+    @protocol = Protocol.new
+  end
+  
+  def members
+    @laboratory = Laboratory.find params[:laboratory_id]
+  end
+  
+  def invite
+    @laboratory = Laboratory.find params[:laboratory_id]
   end
   
   def send_invites

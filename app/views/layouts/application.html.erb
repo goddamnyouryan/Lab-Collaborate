@@ -16,6 +16,7 @@
 			<ul>
 				<% if user_signed_in? %>
 					<li>Welcome <%= link_to current_user.name, user_path(current_user) %></li>
+					<li><%= link_to "My Lab", root_path %></li>
 					<li><%= link_to "Account Settings", edit_user_registration_path %>
 					<li><%= link_to "Signout", destroy_user_session_path %></li>
 				<% else %>

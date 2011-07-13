@@ -1,8 +1,3 @@
-<% title "#{@laboratory.name}" %>
-
-<h1><%= @laboratory.name %></h1>
-<h3><%= link_to @laboratory.school.name, school_path(@laboratory.school) %></h3>
-
 <% if current_user.laboratory == @laboratory %>
 	<%= render :partial => "mylab" %>
 <% elsif @laboratory.collaborators.include?(current_user.laboratory)  %>
@@ -10,3 +5,5 @@
 <% else %>
 	<%= render :partial => "anotherlab" %>
 <% end %>
+
+<div class="clear"></div>

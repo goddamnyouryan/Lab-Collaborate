@@ -1,0 +1,19 @@
+<% title "Invite Lab Members" %>
+
+<%= render :partial => 'mylabsidenav' %>
+
+<div class="fl">
+	
+	<%= render :partial => 'users' %>
+
+	<h2 class="ts">Sign up your other lab members</h2>
+	<h3>Paste their email addresses here, separated by commas.</h3>
+	
+	<%= form_tag '/send-invites' do %>
+		<p><%= text_area_tag 'emails' %></p>
+		<p><%= submit_tag 'sign them up' %></p>
+	<% end %>
+
+</div>
+
+<div class="clear"></div>

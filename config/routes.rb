@@ -1,7 +1,6 @@
 Lab::Application.routes.draw do
 
   get "whiteboards/create"
-
   get "protocols/create"
 
   devise_for :users
@@ -16,7 +15,6 @@ Lab::Application.routes.draw do
   match '/accept_friend', :to => 'laboratories#accept_friend'
   match '/decline_friend', :to => 'laboratories#decline_friend'
   match '/remove_friend', :to => 'laboratories#remove_friend'
-  match '/invite-lab-members', :to => 'laboratories#invite_lab', :as => "invite_lab"
   match '/send-invites', :to => 'laboratories#send_invites'
   match '/make-admin', :to => 'users#make_admin', :as => "make_admin"
   match '/mark_as_ordered', :to => 'inventories#mark_as_ordered'
@@ -28,6 +26,9 @@ Lab::Application.routes.draw do
   resources :users, :only => ["show"]
   resources :laboratories do
     resources :inventories
+    get 'protocols'
+    get 'members'
+    get 'invite'
   end
   resources :protocols
   resources :whiteboards

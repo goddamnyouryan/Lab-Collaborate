@@ -1,6 +1,6 @@
 <% title "Orders for #{@laboratory.name}" %>
 
-<h2>Orders for <%= @laboratory.name %></h2>
+<h2>Orders for <%= link_to @laboratory.name, @laboratory %></h2>
 
 <p class="bs"><%= link_to "Place new order", new_laboratory_inventory_path %></p>
 

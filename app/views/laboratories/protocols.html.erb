@@ -1,0 +1,34 @@
+<% title "Protocols for #{@laboratory.name}" %>
+
+<%= render :partial => 'mylabsidenav' %>
+
+<div class="fl">
+	
+	<%= render :partial => 'users' %>
+
+	<h2 class="ts">Protocols for <%= link_to @laboratory.name, @laboratory %> (<%= @laboratory.protocols.count %>)</h2>
+	
+	<ul>
+		<% @laboratory.protocols.each do |protocol| %>
+			<li>
+				<%= protocol.name %> - 
+				<%= link_to "Download", protocol.attachment.url(:original, false) %>
+				<% if current_user.role == "admin" || current_user.protocols.include?(protocol) %>
+				  -	<%= link_to "Delete", protocol, :method => :delete %>
+				<% end %>
+			</li>
+		<% end %>
+	</ul>
+	
+	<h2 class="ts">Add New Protocol</h2>
+	<%= form_for @protocol, :html => { :multipart => true } do |f| %>
+	<p><%= f.label :name %><br />
+	<%= f.text_field :name %></p>
+		<p><%= f.label :attachment %><br />
+		<%= f.file_field :attachment %></p>
+	  <p><%= f.submit "Share Protocol" %></p>
+	<% end %>
+	
+</div>
+
+<div class="clear"></div>
