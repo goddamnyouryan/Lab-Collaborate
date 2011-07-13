@@ -33,6 +33,15 @@ class User < ActiveRecord::Base
     end
   end
   
+  def short_name
+    if self.first_name.nil? || self.last_name.nil?
+      truncate(self.email, 15)
+    else
+      fullname = [self.first_name, self.last_name].join(" ")
+      truncate(fullname, 15)
+    end
+  end
+  
   def make_admin
     self.update_attributes(:role => "admin")
   end

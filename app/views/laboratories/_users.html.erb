@@ -4,7 +4,7 @@
 			<%= link_to user_path(user) do %>
 				<%= image_tag user.photo.url(:thumb) %><br />
 			<% end %>
-			<%= link_to user.name, user_path(user) %>
+			<%= link_to user.short_name, user_path(user) %>
 		</li>
 	<% end %>
 </ul>
