@@ -1,9 +1,11 @@
 <% if user_signed_in? %>
 	<% unless @laboratory == current_user.laboratory %>
-		<% if @laboratory.pending_collaborators.include?(current_user.laboratory) %>
-			Friend Request Pending
-		<% elsif !@laboratory.collaborators.include?(current_user.laboratory) %>
-			<%= link_to "Add This Lab as Friend", add_friend_path(:laboratory_id => @laboratory.id), :remote => true %>
+		<% if current_user.role == "admin" %>
+			<% if @laboratory.pending_collaborators.include?(current_user.laboratory) %>
+				Friend Request Pending
+			<% elsif !@laboratory.collaborators.include?(current_user.laboratory) %>
+				<%= link_to "Add This Lab as Friend", add_friend_path(:laboratory_id => @laboratory.id), :remote => true %>
+			<% end %>
 		<% end %>
 	<% end %>
 <% end %>

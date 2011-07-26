@@ -48,6 +48,7 @@ div#flash_notice {
 	padding: 15px 0;
 	text-align:center;
 	background: #d5ebeb;
+	margin-bottom: 25px;
 }
 
 div#flash_error {
@@ -117,4 +118,20 @@ ul.whiteboard li { margin-top:15px; }
 
 .whiteboard-post { margin-left: 5px;}
 
+nav#laboratory ul li {
+	color:#fff;
+	background: #6881C9;
+	margin-bottom:1px;
+}
 
+nav#laboratory ul li a {
+	color:#6881C9;
+	background:#fff;
+	display:block;
+}
+
+nav#laboratory ul li a:hover {
+	color:#fff;
+	background: #6881C9;
+	text-decoration: none;
+}

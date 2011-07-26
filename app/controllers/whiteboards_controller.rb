@@ -8,5 +8,12 @@ class WhiteboardsController < ApplicationController
       redirect_to @laboratory, :notice => "message posted!"
     end
   end
+  
+  def destroy
+    @whiteboard = Whiteboard.find params[:id]
+    @laboratory = @whiteboard.laboratory
+    @whiteboard.destroy
+    redirect_to @laboratory, :notice => "whiteboard message removed!"
+  end
 
 end

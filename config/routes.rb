@@ -29,6 +29,7 @@ Lab::Application.routes.draw do
     get 'protocols'
     get 'members'
     get 'invite'
+    get 'edit_info'
   end
   resources :protocols
   resources :whiteboards

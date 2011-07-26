@@ -6,18 +6,18 @@
 	<h3><%= link_to @laboratory.school.name, school_path(@laboratory.school) %></h3>
 	<nav id="laboratory">
 		<ul>
-			<li><%= link_to_unless_current "Whiteboard", @laboratory %></li>
 			<li><%= link_to_unless_current "Lab Members", laboratory_members_path(@laboratory) %></li>
-			<li><%= link_to_unless_current "Protocols", laboratory_protocols_path(@laboratory) %></li>
-			<li><%= link_to_unless_current "Order Inventory", laboratory_inventories_path(@laboratory) %></li>
-			<% if current_user.role == "admin" %>
-				<li><%= link_to_unless_current "Invite Lab Mates", laboratory_invite_path(@laboratory) %></li>
+			<% if current_user.pending_laboratory == @laboratory %>
+				<li>You are waiting approval by an admin to be admitted to this lab page.</li>
+			<% elsif !@laboratory.users.include?(current_user) && current_user.laboratory.nil? && current_user.pending_laboratory.nil? %>
+				<li><%= link_to "I work in this lab", add_affiliate_path(:laboratory_id => @laboratory.id) %></li>
 			<% end %>
+				<li id="friend"><%= render :partial => 'friend' %></li>
 		</ul>
 	</nav>
 	
 	<p class="ts bs" id="info">
-		<%= @laboratory.info %> <%= link_to "(edit)", laboratory_edit_info_path(@laboratory), :remote => true %>
+		<%= @laboratory.info %>
 	</p>
 	
 	<%= render :partial => 'affiliates' %>

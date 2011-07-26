@@ -20,6 +20,12 @@ class LaboratoriesController < ApplicationController
   end
 
   def update
+    @laboratory = Laboratory.find params[:id]
+    @laboratory.update_attributes(params[:laboratory])
+    respond_to do |format|
+      format.js
+      format.html { redirect_to @laboratory, :notice => "info updated." }
+    end
   end
 
   def destroy
@@ -113,6 +119,14 @@ class LaboratoriesController < ApplicationController
     @friend = Laboratory.find params[:laboratory_id]
     @laboratory.remove_friendship(@friend)
     redirect_to root_path, :notice => "Friendship with #{@laboratory.name} declined."
+  end
+  
+  def edit_info
+    @laboratory = Laboratory.find params[:laboratory_id]
+    respond_to do |format|
+      format.js
+      format.html { redirect_to edit_laboratory_path(@laboratory) }
+    end
   end
   
 end

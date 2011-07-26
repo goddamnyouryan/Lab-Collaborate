@@ -1,6 +1,10 @@
 <% title "Protocols for #{@laboratory.name}" %>
 
-<%= render :partial => 'mylabsidenav' %>
+<% if current_user.laboratory == @laboratory %>
+	<%= render :partial => 'mylabsidenav' %>
+<% elsif @laboratory.collaborators.include?(current_user.laboratory)  %>
+	<%= render :partial => "friendlabsidenav" %>
+<% end %>
 
 <div class="fl">
 	

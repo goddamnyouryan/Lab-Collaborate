@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :first_name, :last_name, :password, :password_confirmation, :remember_me, :phone, :address, :school_id, :role, :photo
+  attr_accessible :email, :first_name, :last_name, :password, :password_confirmation, :remember_me, :phone, :address, :school_id, :role, :photo, :info
   
   belongs_to :school
   has_many :whiteboards
@@ -23,6 +23,11 @@ class User < ActiveRecord::Base
                             
   validates_attachment_size :photo, :less_than => 5.megabytes
   validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/jpg', 'image/png', 'image/gif']
+  
+  validates :email, :presence   => true,
+                    :format     => { :with => /\A[\w+\-.]+@[a-z\d\-.]+\.[edu]+\z/i, 
+                    :message => "You must have a .edu email address." },
+                    :uniqueness => { :case_sensitive => false }
   
   
   def name

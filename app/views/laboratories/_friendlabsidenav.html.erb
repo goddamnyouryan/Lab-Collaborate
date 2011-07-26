@@ -9,15 +9,14 @@
 			<li><%= link_to_unless_current "Whiteboard", @laboratory %></li>
 			<li><%= link_to_unless_current "Lab Members", laboratory_members_path(@laboratory) %></li>
 			<li><%= link_to_unless_current "Protocols", laboratory_protocols_path(@laboratory) %></li>
-			<li><%= link_to_unless_current "Order Inventory", laboratory_inventories_path(@laboratory) %></li>
 			<% if current_user.role == "admin" %>
-				<li><%= link_to_unless_current "Invite Lab Mates", laboratory_invite_path(@laboratory) %></li>
+				<li><%= link_to "Delete Friendship", remove_friend_path(:laboratory_id => @laboratory.id), :confirm => "Are you sure you no longer want your lab to be friends with this lab?" %></li>
 			<% end %>
 		</ul>
 	</nav>
 	
 	<p class="ts bs" id="info">
-		<%= @laboratory.info %> <%= link_to "(edit)", laboratory_edit_info_path(@laboratory), :remote => true %>
+		<%= @laboratory.info %>
 	</p>
 	
 	<%= render :partial => 'affiliates' %>

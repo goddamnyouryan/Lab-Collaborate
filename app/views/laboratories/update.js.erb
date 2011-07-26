@@ -1,0 +1,1 @@
+$("#info").html("<%= escape_javascript(@laboratory.info) %> <%= escape_javascript( link_to '(edit)', laboratory_edit_info_path(@laboratory), :remote => true ) %>");

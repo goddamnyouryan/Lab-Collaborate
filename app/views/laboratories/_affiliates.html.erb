@@ -1,3 +1,5 @@
+<% if current_user.laboratory == @laboratory && current_user.role == "admin" %>
+
 <% if @laboratory.pending_users.count > 0 %>
 	<h2>Pending Users (<%= @laboratory.pending_users.count %>)</h2>
 	<ul>
@@ -23,3 +25,5 @@
 		<% end %>
 		</ul>
 	<% end %>
+	
+<% end %>

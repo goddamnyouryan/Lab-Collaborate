@@ -1,6 +1,12 @@
 <% title "Members of #{@laboratory.name}" %>
 
-<%= render :partial => 'mylabsidenav' %>
+<% if current_user.laboratory == @laboratory %>
+	<%= render :partial => 'mylabsidenav' %>
+<% elsif @laboratory.collaborators.include?(current_user.laboratory)  %>
+	<%= render :partial => "friendlabsidenav" %>
+<% else %>
+	<%= render :partial => "anotherlabsidenav" %>
+<% end %>
 
 <div class="fl">
 
