@@ -4,8 +4,8 @@ class Laboratory < ActiveRecord::Base
   has_many :whiteboards
   
   has_many :affiliations
-  has_many :users, :through => :affiliations, :conditions => "status ='accepted'"
-  has_many :pending_users, :through => :affiliations, :source => :user, :conditions => "status = 'pending'"
+  has_many :users, :through => :affiliations, :conditions => "status ='accepted'", :dependent => :destroy
+  has_many :pending_users, :through => :affiliations, :source => :user, :conditions => "status = 'pending'", :dependent => :destroy
   
   has_many :collaborators, :through => :friends, :source => :friend, :conditions => "status = 'accepted'"
 	has_many :pending_collaborators, :through => :friends, :source => :friend, :conditions => "status = 'pending'"
