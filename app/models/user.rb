@@ -28,7 +28,10 @@ class User < ActiveRecord::Base
                     :format     => { :with => /\A[\w+\-.]+@[a-z\d\-.]+\.[edu]+\z/i, 
                     :message => "You must have a .edu email address." },
                     :uniqueness => { :case_sensitive => false }
-  
+                    
+  def to_param
+    "#{id}-#{name.slice(0..40).gsub(/\W/, '-').downcase.gsub(/-{2,}/,'-')}"
+  end
   
   def name
     if self.first_name.nil? || self.last_name.nil?

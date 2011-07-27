@@ -12,6 +12,10 @@ class Laboratory < ActiveRecord::Base
 	has_many :requested_collaborators, :through => :friends, :source => :friend, :conditions => "status = 'requested'"
 	has_many :friends, :dependent => :destroy
 	
+	def to_param
+    "#{id}-#{name.slice(0..40).gsub(/\W/, '-').downcase.gsub(/-{2,}/,'-')}"
+  end
+	
 	def add_friend(friend, user)
 	  @friend1 = Friend.create(:laboratory_id => self.id, :friend_id => friend.id, :user_id => user.id, :status => "requested")
 	  @friend2 = Friend.create(:laboratory_id => friend.id, :friend_id => self.id, :user_id => nil, :status => "pending")

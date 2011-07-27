@@ -33,7 +33,6 @@ class LaboratoriesController < ApplicationController
   
   def show
     @laboratory = Laboratory.find params[:id]
-    
     @whiteboard = Whiteboard.new
   end
   

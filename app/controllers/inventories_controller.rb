@@ -2,7 +2,7 @@ class InventoriesController < ApplicationController
   
   def index
     @laboratory = Laboratory.find params[:laboratory_id]
-    @inventories = @laboratory.users.map(&:inventories)[0].reverse
+    @inventories = @laboratory.users.map(&:inventories).reverse[0]
   end
   
   def new

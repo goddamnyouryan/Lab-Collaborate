@@ -1,5 +1,5 @@
 <ul class="bs" id="users">
-	<% @laboratory.users.each do |user| %>
+	<% @laboratory.users.limit(7).each do |user| %>
 		<li>
 			<%= link_to user_path(user) do %>
 				<%= image_tag user.photo.url(:thumb) %><br />
@@ -10,3 +10,7 @@
 </ul>
 
 <div class="clear"></div>
+
+<% if @laboratory.users.count > 7 %>
+	<%= link_to "View all Lab Members(#{@laboratory.users.count})", laboratory_members_path(@laboratory), :class => "fr" %>
+<% end %>
