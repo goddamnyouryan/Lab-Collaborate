@@ -1,16 +1,16 @@
 <ul class="bs" id="users">
-	<% @laboratory.users.limit(7).each do |user| %>
+	<% @laboratory.users.limit(6).each do |user| %>
 		<li>
 			<%= link_to user_path(user) do %>
 				<%= image_tag user.photo.url(:thumb) %><br />
 			<% end %>
-			<%= link_to "#{truncate(user.name, :length => 15)}", user_path(user) %>
+			<%= link_to "#{truncate(user.name, :length => 14)}", user_path(user) %>
 		</li>
 	<% end %>
 </ul>
 
 <div class="clear"></div>
 
-<% if @laboratory.users.count > 7 %>
-	<%= link_to "View all Lab Members(#{@laboratory.users.count})", laboratory_members_path(@laboratory), :class => "fr" %>
+<% if @laboratory.users.count > 6 %>
+	<%= link_to "View all Lab Members(#{@laboratory.users.count})", laboratory_members_path(@laboratory), :class => "fr ts" %>
 <% end %>
