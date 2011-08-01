@@ -2,6 +2,7 @@ class Laboratory < ActiveRecord::Base
   belongs_to :school
   has_many :protocols
   has_many :whiteboards
+  has_many :inventories
   
   has_many :affiliations
   has_many :users, :through => :affiliations, :conditions => "status ='accepted'", :dependent => :destroy

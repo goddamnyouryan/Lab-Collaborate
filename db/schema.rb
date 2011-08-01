@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110725235742) do
+ActiveRecord::Schema.define(:version => 20110801025901) do
 
   create_table "affiliations", :force => true do |t|
     t.integer  "user_id"
@@ -34,10 +34,11 @@ ActiveRecord::Schema.define(:version => 20110725235742) do
     t.string   "catalog"
     t.text     "description"
     t.integer  "user_id"
-    t.string   "status",      :default => "pending", :null => false
+    t.string   "status",        :default => "pending", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "url"
+    t.integer  "laboratory_id"
   end
 
   create_table "laboratories", :force => true do |t|
