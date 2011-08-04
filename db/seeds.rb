@@ -5,3 +5,10 @@
 #
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
+
+@users = User.all
+@users.each do |user|
+  if user.photo.exists?
+    user.photo.reprocess!
+  end
+end

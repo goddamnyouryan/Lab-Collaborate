@@ -105,7 +105,11 @@ header h1 a { display: block; width: 300px; height: 38px;}
 
 ul#users { width: 685px; }
 
-ul#users li { float: left; margin-right: 15px; text-align:center; width:99px;}
+ul#users li { float: left; margin:0 15px 50px 0; text-align:center; width:40px; height: 40px;}
+
+ul#users li .name { display: none;}
+ul#users li img:hover { outline: 1px solid #6881C9;}
+ul#users li:hover span { display: inline !important;}
 
 nav#laboratory {
 	margin-top: 25px;
@@ -143,3 +147,14 @@ p#info {
 }
 
 strong { font-weight:bold;}
+
+input { 
+	padding: 3px;
+	margin-bottom: 10px;
+}
+
+ul#members li { margin-top: 15px; }
+ul#members li img { float: left; }
+ul#members li h3 { float: left; margin: 35px 0 0 5px;}
+
+footer {width:960px; margin: 15px auto;}

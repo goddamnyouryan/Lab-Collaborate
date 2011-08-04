@@ -23,7 +23,7 @@ Lab::Application.routes.draw do
     get :autocomplete_school_name, :on => :collection
   end
   
-  resources :users, :only => ["show"]
+  resources :users, :only => ["show", "edit", "update"]
   resources :laboratories do
     resources :inventories
     get 'protocols'

@@ -10,16 +10,17 @@
 
 <div class="fl">
 
-	<h2>Members of <%= @laboratory.name %></h2>
+	<h2>Members of <%= link_to @laboratory.name, @laboratory %> (<%= @laboratory.users.count %>)</h2>
 
-	<ul class="bs">
+	<ul class="bs" id="members">
 		<% @laboratory.users.each do |user| %>
 			<li>
 				<%= link_to user_path(user) do %>
 					<%= image_tag user.photo.url(:thumb) %>
 				<% end %>
-				<%= link_to user.name, user_path(user) %>
+				<h3><%= link_to user.name, user_path(user) %></h3>
 			</li>
+			<div class="clear"></div>
 		<% end %>
 	</ul>
 	
