@@ -19,7 +19,11 @@
 	<tr class="ordered">
 		<td align="center"><%= inventory.id %></td>
 		<td align="center"><%= inventory.vendor %></td>
-		<td align="center"><%= inventory.catalog %></td>
+		<% if inventory.url == "" || inventory.url.nil? %>
+			<td align="center"><%= inventory.catalog %></td>
+		<% else %>
+			<td align="center"><a href="<%= inventory.url %>" target="_blank"><%= inventory.catalog %></a></td>
+		<% end %>
 		<td align="center"><%= inventory.description %></td>
 		<td align="center"><%= link_to inventory.user.name, user_path(inventory.user) %></td>
 		<td align="center"><%= time_ago_in_words(inventory.created_at) %> ago</td>
