@@ -7,7 +7,7 @@
 <% end %>
 
 <ul class="ts whiteboard">
-	<% @laboratory.whiteboards.reverse.each do |whiteboard| %>
+	<% @laboratory.whiteboards.order("created_at DESC").each do |whiteboard| %>
 		<li>
 			<div class="fl">
 				<%= link_to user_path(whiteboard.user) do %>

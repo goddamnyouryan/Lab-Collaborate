@@ -2,7 +2,7 @@ class InventoriesController < ApplicationController
   
   def index
     @laboratory = Laboratory.find params[:laboratory_id]
-    @inventories = @laboratory.inventories
+    @inventories = @laboratory.inventories.order("created_at DESC")
   end
   
   def new
