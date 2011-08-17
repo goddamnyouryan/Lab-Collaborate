@@ -158,3 +158,8 @@ ul#members li img { float: left; }
 ul#members li h3 { float: left; margin: 35px 0 0 5px;}
 
 footer {width:960px; margin: 15px auto;}
+
+form.search {
+	width: 200px;
+	display: inline;
+}

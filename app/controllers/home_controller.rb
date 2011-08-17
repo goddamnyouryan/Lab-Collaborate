@@ -30,4 +30,13 @@ class HomeController < ApplicationController
     @labs = Laboratory.find :all, :conditions => ["school_id = ?", current_user.school_id ]
   end
   
+  def search
+    @laboratories = Laboratory.where("lower(name) LIKE ? OR lower(info) LIKE ?", "%#{params[:search].downcase}%", "%#{params[:search].downcase}%")
+    @users = User.where(
+                  "lower(email) LIKE ? OR lower(first_name) LIKE ? OR lower(last_name) LIKE ? OR lower(fullname) LIKE ? OR lower(info) LIKE ?",
+                  "%#{params[:search].downcase}%", "%#{params[:search].downcase}%", "%#{params[:search].downcase}%", "%#{params[:search].downcase}%", "%#{params[:search].downcase}%"
+                  )
+   @schools = School.where("lower(name) LIKE ?", "%#{params[:search].downcase}%")
+  end
+  
 end

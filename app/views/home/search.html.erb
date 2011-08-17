@@ -1,0 +1,30 @@
+<% title "Your Search for #{params[:search]}" %>
+
+<h2 class="bs">Your Search for '<%= params[:search] %>' yielded <%= pluralize((@laboratories.count + @users.count + @schools.count), "result") %></h2>
+
+<% unless @laboratories.empty? %>
+	<h3>Laboratories (<%= @laboratories.count %>)</h3>
+	<ul class="bs">
+		<% @laboratories.each do |laboratory| %>
+			<li><%= link_to laboratory.name, laboratory %></li>
+		<% end %>
+	</ul>
+<% end %>
+
+<% unless @users.empty? %>
+	<h3>Users (<%= @users.count %>)</h3>
+	<ul class="bs">
+		<% @users.each do |user| %>
+			<li><%= link_to user.name, user %></li>
+		<% end %>
+	</ul>
+<% end %>
+
+<% unless @schools.empty? %>
+	<h3>Schools (<%= @schools.count %>)</h3>
+	<ul id="schools" class="bs">
+		<% @schools.each do |school| %>
+			<li><%= link_to school.name, school %></li>
+		<% end %>
+	</ul>
+<% end %>

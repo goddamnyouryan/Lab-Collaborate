@@ -8,7 +8,6 @@
 
 @users = User.all
 @users.each do |user|
-  if user.photo.exists?
-    user.photo.reprocess!
-  end
+  @name = [user.first_name, user.last_name].join(" ")
+  user.update_attributes(:fullname => @name)
 end

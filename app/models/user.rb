@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :first_name, :last_name, :password, :password_confirmation, :remember_me, :phone, :address, :school_id, :role, :photo, :info
+  attr_accessible :email, :first_name, :last_name, :password, :password_confirmation, :remember_me, :phone, :address, :school_id, :role, :photo, :info, :fullname
   
   belongs_to :school
   has_many :whiteboards
@@ -28,9 +28,19 @@ class User < ActiveRecord::Base
                     :format     => { :with => /\A[\w+\-.]+@[a-z\d\-.]+\.[edu]+\z/i, 
                     :message => "You must have a .edu email address." },
                     :uniqueness => { :case_sensitive => false }
-                    
+  
+  after_create :add_name
+  
   def to_param
     "#{id}-#{name.slice(0..40).gsub(/\W/, '-').downcase.gsub(/-{2,}/,'-')}"
+  end
+  
+  def add_name
+    if self.first_name.nil? || self.last_name.nil?
+      @user = self.update_attributes(:fullname => self.email)
+    else
+      @user = self.update_attributes(:fullname => [self.first_name, self.last_name].join(" "))
+    end
   end
   
   def name

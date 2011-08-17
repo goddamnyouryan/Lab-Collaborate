@@ -25,6 +25,12 @@
 		<nav>
 			<ul>
 				<% if user_signed_in? %>
+					<li>
+						<% form_tag search_path, :method => :get, :class => 'search' do %>
+							<%= text_field_tag :search, nil, :placeholder => "Search..." %>
+							<%= submit_tag "Search" %>
+						<% end %>
+					</li>
 					<li>Welcome <%= link_to current_user.name, user_path(current_user) %></li>
 					<li><%= link_to "My Lab", root_path %></li>
 					<li><%= link_to "Account Settings", edit_user_registration_path %>
@@ -49,7 +55,7 @@
 	
 	<footer>
 		<ul>
-			<li>&copy;<%= Date.today.year %><%= link_to "Lab Collaborate", root_path %></li>
+			<li>&copy;<%= Date.today.year %> <%= link_to "Lab Collaborate", root_path %></li>
 		</ul>
 	</footer>
 
