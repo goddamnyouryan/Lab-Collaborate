@@ -29,6 +29,9 @@ class LaboratoriesController < ApplicationController
   end
 
   def destroy
+    @laboratory = Laboratory.find params[:id]
+    @laboratory.destroy
+    redirect_to schools_path
   end
   
   def show
