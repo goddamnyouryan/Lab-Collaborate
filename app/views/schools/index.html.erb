@@ -7,6 +7,14 @@
 		<li>
 			<%= school.name %> - 
 			<%= link_to "delete", school, :method => :delete, :confirm => "Are you sure? This will delete all associated labs as well." %>
+				<ul style="margin:0 0 25px 15px;">
+					<% school.laboratories.each do |laboratory| %>
+						<li>
+							<%= link_to laboratory.name, laboratory %> -
+							<%= link_to "delete", laboratory, :method => :delete, :confirm => "Are you sure you want to delete #{laboratory.name? }" %>				
+						</li>
+					<% end %>
+				</ul>
 		</li>
 	<% end %>
 </ul>
