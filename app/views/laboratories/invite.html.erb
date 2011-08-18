@@ -1,4 +1,4 @@
-<% title "Invite Lab Members" %>
+<% title "Add Lab Members" %>
 
 <%= render :partial => 'mylabsidenav' %>
 
@@ -6,11 +6,11 @@
 	
 	<%= render :partial => 'users' %>
 
-	<h2 class="ts">Sign up your other lab members</h2>
-	<h3>Paste their email addresses here, separated by commas.</h3>
+	<h2>Sign up your other lab members</h2>
+	<h3 class="bs">Paste their email addresses here, separated by commas.</h3>
 	
 	<%= form_tag '/send-invites' do %>
-		<p><%= text_area_tag 'emails' %></p>
+		<p><%= text_area_tag 'emails', nil, :style => "width: 300px;height:60px;" %></p>
 		<p><%= submit_tag 'sign them up' %></p>
 	<% end %>
 

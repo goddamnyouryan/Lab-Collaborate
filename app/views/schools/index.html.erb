@@ -1,0 +1,12 @@
+<% title "Schools Admin" %>
+
+<h2>Schools Admin</h2>
+
+<ul>
+	<% @schools.each do |school| %>
+		<li>
+			<%= school.name %> - 
+			<%= link_to "delete", school, :method => :delete, :confirm => "Are you sure? This will delete all associated labs as well." %>
+		</li>
+	<% end %>
+</ul>

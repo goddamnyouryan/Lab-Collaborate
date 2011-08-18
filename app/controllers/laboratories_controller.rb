@@ -51,13 +51,15 @@ class LaboratoriesController < ApplicationController
   
   def send_invites
     @emails = params[:emails].gsub(/\s+/, "").split(",")
+    @users = Array.new
     @emails.each do |email|
       password = ActiveSupport::SecureRandom.base64(6)
       user = User.create(:email => email, :password => password, :password_confirmation => password, :school_id => current_user.school_id)
+      @users << user
       affiliation = Affiliation.create(:user_id => user.id, :laboratory_id => current_user.laboratory.id, :status => "accepted")
       UserMailer.deliver_invite_notification(user, current_user, password)
     end
-    redirect_to root_path, :notice => "Signed Colleagues up as members of your lab!"
+    redirect_to edit_user_path(@users.first), :notice => "Signed Colleagues up as members of your lab! Now add some info about them!"
   end
   
   def add_affiliate

@@ -11,7 +11,7 @@
 			<li><%= link_to_unless_current "Protocols", laboratory_protocols_path(@laboratory) %></li>
 			<li><%= link_to_unless_current "Order Inventory", laboratory_inventories_path(@laboratory) %></li>
 			<% if current_user.role == "admin" %>
-				<li><%= link_to_unless_current "Invite Lab Mates", laboratory_invite_path(@laboratory) %></li>
+				<li><%= link_to_unless_current "Add Lab Members", laboratory_invite_path(@laboratory) %></li>
 			<% end %>
 		</ul>
 	</nav>

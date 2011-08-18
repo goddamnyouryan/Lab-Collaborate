@@ -69,9 +69,6 @@ GEM
       activesupport (= 3.0.5)
       bundler (~> 1.0)
       railties (= 3.0.5)
-    rails3-jquery-autocomplete (0.7.4)
-      rails (~> 3.0)
-      yajl-ruby
     railties (3.0.5)
       actionpack (= 3.0.5)
       activesupport (= 3.0.5)
@@ -85,7 +82,6 @@ GEM
     warden (1.0.4)
       rack (>= 1.0)
     xml-simple (1.0.15)
-    yajl-ruby (0.8.2)
 
 PLATFORMS
   ruby
@@ -98,5 +94,4 @@ DEPENDENCIES
   paperclip
   pg
   rails (= 3.0.5)
-  rails3-jquery-autocomplete
   rake (~> 0.8.7)

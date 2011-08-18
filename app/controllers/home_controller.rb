@@ -20,6 +20,11 @@ class HomeController < ApplicationController
     end
   end
   
+  def choose_university
+    @schools = School.all
+    @school = School.new
+  end
+  
   def update_school
     @school = School.find_or_create_by_name(params[:school_id])
     current_user.update_attributes(:school_id => @school.id)

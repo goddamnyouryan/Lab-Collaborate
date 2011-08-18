@@ -19,11 +19,9 @@ Lab::Application.routes.draw do
   match '/make-admin', :to => 'users#make_admin', :as => "make_admin"
   match '/mark_as_ordered', :to => 'inventories#mark_as_ordered'
   match '/search', :to => 'home#search'
+  match '/update-school', :to => 'home#update_school'
   
-  resources :schools do
-    get :autocomplete_school_name, :on => :collection
-  end
-  
+  resources :schools
   resources :users, :only => ["show", "edit", "update"]
   resources :laboratories do
     resources :inventories
