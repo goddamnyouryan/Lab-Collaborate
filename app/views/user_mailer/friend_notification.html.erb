@@ -10,15 +10,10 @@
       Dear <%= @user.name %>,
     </p>
     <p>
-      <%= @inviter.name %>, your lab colleague, has signed you up for Lab Collaborate, the premiere lab-centric social networking site on the web:
+      Your lab is now friends with <%= link_to @laboratory.name, laboratory_url(@laboratory) %>.
     </p>
 
-		<p>To sign in and get started visit the <%= link_to "site", root_url %>, and login with these credentials:</p>
-			
-		<p><strong>Email Address:</strong> <%= @user.email %></p>
-		<p><strong>Password:</strong> <%= @password %></p>
-		
-		<p>Once you login, you'll probably want to change your password to something more memorable!</p>
+		<p><%= link_to "log in", root_url %> to view their lab page, post on their whiteboard and share files!</p>
 		
 		<p>Have fun!<br />
 			The Lab Collaborate Team</p>

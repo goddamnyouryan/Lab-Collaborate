@@ -98,6 +98,9 @@ class LaboratoriesController < ApplicationController
     @laboratory = current_user.laboratory
     @friend = Laboratory.find params[:laboratory_id]
     @laboratory.add_friend(@friend, current_user)
+    @friend.users.where("role = ?", "admin").each do |user|
+      UserMailer.deliver_friend_request(user, @laboratory)
+    end
     respond_to do |format|
       format.js
       format.html { redirect_to @friend }
@@ -108,6 +111,12 @@ class LaboratoriesController < ApplicationController
     @laboratory = current_user.laboratory
     @friend = Laboratory.find params[:laboratory_id]
     @laboratory.accept_friendship(@friend, current_user)
+    @laboratory.users.each do |user|
+      UserMailer.deliver_friend_notification(user, @friend)
+    end
+    @friend.users.each do |user|
+      UserMailer.deliver_friend_notification(user, @laboratory)
+    end
     redirect_to root_path, :notice => "You are now collaborating with #{@laboratory.name}."
   end
   
