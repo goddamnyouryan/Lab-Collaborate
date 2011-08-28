@@ -30,8 +30,5 @@
 		<td align="center"><%= link_to inventory.user.name, user_path(inventory.user) %></td>
 		<td align="center"><%= time_ago_in_words(inventory.created_at) %> ago</td>
 		<td align="center"><%= time_ago_in_words(inventory.updated_at) %> ago</td>
-		<% if current_user.role == "admin" %>
-			<td align="center">order placed</td>
-		<% end %>
 	</tr>
 <% end %>

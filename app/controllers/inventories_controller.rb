@@ -3,6 +3,9 @@ class InventoriesController < ApplicationController
   def index
     @laboratory = Laboratory.find params[:laboratory_id]
     @inventories = @laboratory.inventories.order("created_at DESC")
+    if params[:search]
+      @inventories = @laboratory.inventories.where("LOWER(vendor) LIKE ? OR LOWER(catalog) LIKE ? OR LOWER(description) LIKE ?", "%#{params[:search].to_s.downcase}%","%#{params[:search].to_s.downcase}%","%#{params[:search].to_s.downcase}%")
+    end
   end
   
   def new

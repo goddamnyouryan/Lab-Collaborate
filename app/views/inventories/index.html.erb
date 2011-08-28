@@ -1,6 +1,12 @@
 <% title "Orders for #{@laboratory.name}" %>
 
-<h2>Orders for <%= link_to @laboratory.name, @laboratory %></h2>
+<h2 style="display:inline;float:left;">Orders for <%= link_to @laboratory.name, @laboratory %></h2>
+<% form_tag laboratory_inventories_path(@laboratory), :method => :get, :class => "fr" do %>
+	<%= text_field_tag :search, params[:search], :placeholder => "Search Orders..." %>
+	<%= submit_tag "Search" %>
+<% end %>
+
+<div class="clear"></div>
 
 <p class="bs"><%= link_to "Place new order", new_laboratory_inventory_path %></p>
 
