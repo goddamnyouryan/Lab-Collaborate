@@ -4,18 +4,25 @@
 	<h3>The #1 Social Network for Academia in the Universe.</h3>
 </div>
 
-<h2>Sign in</h2>
+<div class="fl rs">
+	<h2>Sign in</h2>
+	
+	<%= form_for("user", :url => user_session_path) do |f| %>
+	  <p><%= f.label :email %><br />
+	  <%= f.email_field :email %></p>
+	
+	  <p><%= f.label :password %><br />
+	  <%= f.password_field :password %></p>
+	
+	  <p><%= f.check_box :remember_me %> <%= f.label :remember_me %></p>
+	
+	  <p><%= f.submit "Sign in" %></p>
+	<% end %>
+	
+	<p>Not yet a member? <%= link_to "Register", new_user_registration_path %>
+		
+</div>
 
-<%= form_for("user", :url => user_session_path) do |f| %>
-  <p><%= f.label :email %><br />
-  <%= f.email_field :email %></p>
+<%= image_tag "splash.jpg", :class => "fl" %>
 
-  <p><%= f.label :password %><br />
-  <%= f.password_field :password %></p>
-
-  <p><%= f.check_box :remember_me %> <%= f.label :remember_me %></p>
-
-  <p><%= f.submit "Sign in" %></p>
-<% end %>
-
-<p>Not yet a member? <%= link_to "Register", new_user_registration_path %>
+<div class="clear"></div>

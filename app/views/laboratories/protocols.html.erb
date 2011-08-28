@@ -9,29 +9,63 @@
 <div class="fl">
 	
 	<%= render :partial => 'users' %>
-
-	<h2 class="ts">Protocols for <%= link_to @laboratory.name, @laboratory %> (<%= @laboratory.protocols.count %>)</h2>
 	
-	<ul>
-		<% @laboratory.protocols.each do |protocol| %>
-			<li>
-				<%= protocol.name %> - 
-				<%= link_to "Download", protocol.attachment.url(:original, false) %>
+	<% unless params[:search] %>
+		<h2 style="display:inline;float:left;">
+			Library for <%= link_to @laboratory.name, @laboratory %> (<%= @laboratory.protocols.count %>)
+		</h2>
+	<% else %>
+		<h2 style="display:inline;float:left;">
+			Search results for <%= link_to @laboratory.name, @laboratory %> Library (<%= @protocols.count %>)
+		</h2>
+	<% end %>
+	
+	<% form_tag laboratory_protocols_path(@laboratory), :method => :get, :class => "fr bs" do %>
+		<%= text_field_tag :search, params[:search], :placeholder => "search library..." %>
+		<%= submit_tag "Search" %>
+	<% end %>
+	
+	<div class="clear"></div>
+	
+	<table width="98%" border="0" cellpadding="5" cellspacing="5" class="border-table ts bs" style="margin:auto;" id="inventory">
+	  <tr style="font-weight:bold;">
+			<td align="center">Name</td>
+			<td align="center">Tags</td>
+			<td align="center">Filename</td>
+			<td align="center">Download</td>
+	    <td align="center">&nbsp;</td>
+	  </tr>
+		<% @protocols.each do |protocol| %>
+			<tr>
+				<td align="center"><%= protocol.name %></td>
+				<td align="center"><%= protocol.tag_list %></td>
+				<td align="center"><%= protocol.attachment_file_name %></td>
+				<td align="center"><%= link_to "Download", protocol.attachment.url(:original, false) %></td>
 				<% if current_user.role == "admin" || current_user.protocols.include?(protocol) %>
-				  -	<%= link_to "Delete", protocol, :method => :delete %>
+					<td align="center"><%= link_to "Delete", protocol, :method => :delete %></td>
 				<% end %>
-			</li>
+			</tr>
 		<% end %>
-	</ul>
+	</table>
+				
 
 <% if current_user.laboratory == @laboratory %>
-	<h2 class="ts">Add New Protocol</h2>
+	<h2 class="ts">Add New Library Upload</h2>
 	<%= form_for @protocol, :html => { :multipart => true } do |f| %>
-	<p><%= f.label :name %><br />
-	<%= f.text_field :name %></p>
-		<p><%= f.label :attachment %><br />
-		<%= f.file_field :attachment %></p>
-	  <p><%= f.submit "Share Protocol" %></p>
+	
+		<p>
+			<%= f.label :name %><br />
+			<%= f.text_field :name %>
+		</p>
+		<p>
+			<%= f.label :tag_list, "Tags (seperate with commas)" %><br />
+			<%= f.text_field :tag_list %>
+		</p>
+		<p>
+			<%= f.label :attachment %> 
+			<%= f.file_field :attachment %>
+		</p>
+	  <p><%= f.submit "Upload" %></p>
 	<% end %>
 <% end %>
 	

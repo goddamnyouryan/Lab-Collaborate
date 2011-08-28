@@ -42,6 +42,11 @@ class LaboratoriesController < ApplicationController
   def protocols
     @laboratory = Laboratory.find params[:laboratory_id]
     @protocol = Protocol.new
+    @protocols = @laboratory.protocols
+    if params[:search]
+      @protocols = @protocols.where("LOWER(name) LIKE ?", "%#{params[:search].to_s.downcase}%")
+      @protocols = @protocols | @laboratory.protocols.tagged_with(params[:search])
+    end
   end
   
   def members

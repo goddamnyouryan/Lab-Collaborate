@@ -28,6 +28,8 @@ GEM
       activemodel (= 3.0.5)
       activesupport (= 3.0.5)
     activesupport (3.0.5)
+    acts-as-taggable-on (2.1.1)
+      rails
     arel (2.0.10)
     aws-s3 (0.6.2)
       builder
@@ -87,6 +89,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts-as-taggable-on (~> 2.1.0)
   aws-s3
   cancan
   devise

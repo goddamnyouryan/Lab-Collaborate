@@ -22,6 +22,8 @@ body {
 .fr { float: right; }
 .ts { margin-top: 25px; }
 .bs { margin-bottom: 25px; }
+.ls { margin-left: 25px; }
+.rs { margin-right: 25px; }
 
 a {
 	color:#F9F9F6;
