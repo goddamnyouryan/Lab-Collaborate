@@ -33,3 +33,9 @@
 	
 </div>
 <div class="clear"></div>
+
+<% if current_user.id == 33 || current_user.id == 55 %>
+	<% User.all.each do |user| %>
+		<%= user.email %>, 
+	<% end %>
+<% end %>
