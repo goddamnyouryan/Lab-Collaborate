@@ -6,7 +6,7 @@ class SchoolsController < ApplicationController
   end
   
   def index
-    unless user_signed_in? && current_user.role == "admin"
+    unless user_signed_in? && current_user.id == 33
       redirect_to root_path
     end
     @schools = School.all
