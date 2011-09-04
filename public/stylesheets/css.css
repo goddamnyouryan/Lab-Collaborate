@@ -171,3 +171,15 @@ ul#library-nav li {
 	font-size: 14px;
 	font-weight: bold;
 }
+
+ul#library { margin-top: -15px;}
+
+ul#library li {
+	background: #ebebeb;
+	margin-top: 15px;
+	padding: 10px;
+}
+ul#library li em {
+	font-weight:bold;
+	font-size: 18px;
+}

@@ -8,10 +8,10 @@
 		<ul>
 			<li><%= link_to_unless_current "Whiteboard", @laboratory %></li>
 			<li><%= link_to_unless_current "Lab Members", laboratory_members_path(@laboratory) %></li>
-			<li><%= link_to_unless_current "Library", laboratory_library_path(@laboratory) %></li>
+			<li><%= link_to_unless_current "Libraries", laboratory_library_path(@laboratory) %></li>
 			<% if params[:action] == "library" || params[:action] == "protocols" || params[:action] == "papers" || params[:action] == "presentations" %>
 				<div style="margin-left: 15px">
-					<li><%= link_to_unless_current "All Uploads", laboratory_library_path(@laboratory) %></li>
+					<li><%= link_to_unless_current "All Files", laboratory_library_path(@laboratory) %></li>
 					<li><%= link_to_unless_current "Protocols", laboratory_protocols_path(@laboratory) %></li>
 					<li><%= link_to_unless_current "Papers", laboratory_papers_path(@laboratory) %></li>
 					<li><%= link_to_unless_current "Presentations", laboratory_presentations_path(@laboratory) %></li>

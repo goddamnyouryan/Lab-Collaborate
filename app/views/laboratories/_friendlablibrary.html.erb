@@ -1,4 +1,13 @@
 
+	<% unless params[:search] %>
+		<h3 style="display:inline;float:left;">
+			Files for <%= link_to @laboratory.name, @laboratory %> (<%= @protocols.count %>)
+		</h3>
+	<% else %>
+		<h3 style="display:inline;float:left;">
+			Search results for <%= link_to @laboratory.name, @laboratory %> Library (<%= @protocols.count %>)
+		</h3>
+	<% end %>
 	
 	<% form_tag laboratory_library_path(@laboratory), :method => :get, :class => "fr bs" do %>
 		<%= text_field_tag :search, params[:search], :placeholder => "search library..." %>
@@ -7,29 +16,22 @@
 	
 	<div class="clear"></div>
 	
-	<ul id="library-nav" class="bs">
-		<li><%= link_to_unless_current "All Uploads", laboratory_library_path(@laboratory) %></li>
-		<li><%= link_to_unless_current "Protocols", laboratory_protocols_path(@laboratory) %></li>
-		<li><%= link_to_unless_current "Papers", laboratory_papers_path(@laboratory) %></li>
-		<li><%= link_to_unless_current "Presentations", laboratory_presentations_path(@laboratory) %></li>
+	<ul id="library">
+		<% @protocols.each do |protocol| %>
+			<li>
+				<div class="fl">
+					<em><%= protocol.name %></em><br />
+					Tags: <%= protocol.tag_list %>
+				</div>
+				<div class="fr" style="margin-top:10px;">
+					<%= link_to "Download", protocol.attachment.url(:original, false) %>
+				</div>
+				<div class="clear"></div>
+			</li>
+		<% end %>
 	</ul>
 	
-	<table width="98%" border="0" cellpadding="5" cellspacing="5" class="border-table ts bs" style="margin:auto;" id="inventory">
-	  <tr style="font-weight:bold;">
-			<td align="center">Name</td>
-			<td align="center">Tags</td>
-			<td align="center">Download</td>
-	  </tr>
-		<% @protocols.each do |protocol| %>
-			<% if protocol.private == false %>
-			<tr>
-				<td align="center"><%= protocol.name %></td>
-				<td align="center"><%= protocol.tag_list %></td>
-				<td align="center"><%= link_to "Download", protocol.attachment.url(:original, false) %></td>
-			</tr>
-			<% end %>
-		<% end %>
-	</table>
+	<div class="clear"></div>
 	
 </div>
 

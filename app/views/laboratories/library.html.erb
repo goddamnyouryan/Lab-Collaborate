@@ -7,18 +7,9 @@
 <% end %>
 
 <div class="fl">
+	<%= render :partial => 'users' %>
 
-<%= render :partial => 'users' %>
-
-<% unless params[:search] %>
-	<h2 style="display:inline;float:left;">
-		Library for <%= link_to @laboratory.name, @laboratory %> (<%= @laboratory.protocols.count %>)
-	</h2>
-<% else %>
-	<h2 style="display:inline;float:left;">
-		Search results for <%= link_to @laboratory.name, @laboratory %> Library (<%= @protocols.count %>)
-	</h2>
-<% end %>
+<h2>Library</h2>
 
 <% if current_user.laboratory == @laboratory %>
 	<%= render :partial => 'mylablibrary' %>

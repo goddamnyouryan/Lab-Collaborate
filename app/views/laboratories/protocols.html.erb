@@ -7,12 +7,9 @@
 <% end %>
 
 <div class="fl">
+	<%= render :partial => 'users' %>
 
-<%= render :partial => 'users' %>
-
-	<h2 style="display:inline;float:left;">
-		Protocols for <%= link_to @laboratory.name, @laboratory %> (<%= @laboratory.protocols.count %>)
-	</h2>
+<h2>Protocols</h2>
 
 <% if current_user.laboratory == @laboratory %>
 	<%= render :partial => 'mylablibrary' %>
