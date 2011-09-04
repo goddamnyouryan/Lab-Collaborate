@@ -18,16 +18,18 @@
 	
 	<ul id="library">
 		<% @protocols.each do |protocol| %>
-			<li>
-				<div class="fl" style="width:500px">
-					<em><%= protocol.name %></em><br />
-					Tags: <%= protocol.tag_list %>
-				</div>
-				<div class="fr" style="margin-top:10px;">
-					<%= link_to "Download", protocol.attachment.url(:original, false) %>
-				</div>
-				<div class="clear"></div>
-			</li>
+			<% unless protocol.private? %>
+				<li>
+					<div class="fl" style="width:500px">
+						<em><%= protocol.name %></em><br />
+						Tags: <%= protocol.tag_list %>
+					</div>
+					<div class="fr" style="margin-top:10px;">
+						<%= link_to "Download", protocol.attachment.url(:original, false) %>
+					</div>
+					<div class="clear"></div>
+				</li>
+			<% end %>
 		<% end %>
 	</ul>
 	
