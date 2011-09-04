@@ -5,7 +5,7 @@
 			<%= f.text_field :name %>
 		</p>
 		<p>
-			<%= f.label :tag_list, "Tags (seperate with commas)" %><br />
+			<%= f.label :tag_list, "Tags (separate with commas)" %><br />
 			<%= f.text_field :tag_list %>
 		</p>
 		<p>
@@ -13,7 +13,7 @@
 			<%= f.select :category, options_for_select(["protocol", "presentation", "paper"], @protocol.category) %>
 		</p>
 		<p style="margin-top:10px;">
-			<%= f.label :private %>
+			<%= f.label :private, "Visible to my lab only." %>
 			<%= f.check_box :private %>
 		</p>
 		<p>
