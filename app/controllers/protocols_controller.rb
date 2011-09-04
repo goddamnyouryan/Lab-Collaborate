@@ -17,5 +17,18 @@ class ProtocolsController < ApplicationController
     @protocol.destroy
     redirect_to laboratory_protocols_path(@laboratory), :notice => "Library upload Removed!"
   end
+  
+  def edit
+    @protocol = Protocol.find params[:id]
+  end
+  
+  def update
+    @protocol = Protocol.find params[:id]
+    @laboratory = @protocol.laboratory
+    @protocol.update_attributes(params[:protocol])
+    if @protocol.save
+      redirect_to laboratory_protocols_path(@laboratory)
+    end
+  end
 
 end

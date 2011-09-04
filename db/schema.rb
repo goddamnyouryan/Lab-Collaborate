@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110828213227) do
+ActiveRecord::Schema.define(:version => 20110903230731) do
 
   create_table "affiliations", :force => true do |t|
     t.integer  "user_id"
@@ -60,6 +60,8 @@ ActiveRecord::Schema.define(:version => 20110828213227) do
     t.datetime "attachment_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "category",                :default => "protocol", :null => false
+    t.boolean  "private",                 :default => false,      :null => false
   end
 
   create_table "schools", :force => true do |t|

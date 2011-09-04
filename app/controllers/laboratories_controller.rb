@@ -39,14 +39,32 @@ class LaboratoriesController < ApplicationController
     @whiteboard = Whiteboard.new
   end
   
-  def protocols
+  def library
     @laboratory = Laboratory.find params[:laboratory_id]
     @protocol = Protocol.new
     @protocols = @laboratory.protocols
     if params[:search]
-      @protocols = @protocols.where("LOWER(name) LIKE ?", "%#{params[:search].to_s.downcase}%")
+      @protocols = @protocols.where("LOWER(name) LIKE ? AND laboratory_id = ?", "%#{params[:search].to_s.downcase}%", @laboratory.id)
       @protocols = @protocols | @laboratory.protocols.tagged_with(params[:search])
     end
+  end
+  
+  def protocols
+    @laboratory = Laboratory.find params[:laboratory_id]
+    @protocol = Protocol.new
+    @protocols = @laboratory.protocols.where("category = ?", "protocol")
+  end
+  
+  def papers
+    @laboratory = Laboratory.find params[:laboratory_id]
+    @protocol = Protocol.new
+    @protocols = @laboratory.protocols.where("category = ?", "paper")
+  end
+  
+  def presentations
+    @laboratory = Laboratory.find params[:laboratory_id]
+    @protocol = Protocol.new
+    @protocols = @laboratory.protocols.where("category = ?", "presentation")
   end
   
   def members

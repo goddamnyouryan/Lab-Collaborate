@@ -1,4 +1,4 @@
-<% title "Protocols for #{@laboratory.name} Library" %>
+<% title "Presentations for #{@laboratory.name} Library" %>
 
 <% if current_user.laboratory == @laboratory %>
 	<%= render :partial => 'mylabsidenav' %>
@@ -11,7 +11,7 @@
 <%= render :partial => 'users' %>
 
 	<h2 style="display:inline;float:left;">
-		Protocols for <%= link_to @laboratory.name, @laboratory %> (<%= @laboratory.protocols.count %>)
+		Presentations for <%= link_to @laboratory.name, @laboratory %> (<%= @laboratory.protocols.count %>)
 	</h2>
 
 <% if current_user.laboratory == @laboratory %>

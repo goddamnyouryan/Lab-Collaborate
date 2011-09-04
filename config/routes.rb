@@ -25,7 +25,10 @@ Lab::Application.routes.draw do
   resources :users, :only => ["show", "edit", "update"]
   resources :laboratories do
     resources :inventories
+    get 'library'
     get 'protocols'
+    get 'papers'
+    get 'presentations'
     get 'members'
     get 'invite'
     get 'edit_info'

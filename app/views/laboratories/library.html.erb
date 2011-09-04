@@ -1,4 +1,4 @@
-<% title "Protocols for #{@laboratory.name} Library" %>
+<% title "Library for #{@laboratory.name}" %>
 
 <% if current_user.laboratory == @laboratory %>
 	<%= render :partial => 'mylabsidenav' %>
@@ -10,9 +10,15 @@
 
 <%= render :partial => 'users' %>
 
+<% unless params[:search] %>
 	<h2 style="display:inline;float:left;">
-		Protocols for <%= link_to @laboratory.name, @laboratory %> (<%= @laboratory.protocols.count %>)
+		Library for <%= link_to @laboratory.name, @laboratory %> (<%= @laboratory.protocols.count %>)
 	</h2>
+<% else %>
+	<h2 style="display:inline;float:left;">
+		Search results for <%= link_to @laboratory.name, @laboratory %> Library (<%= @protocols.count %>)
+	</h2>
+<% end %>
 
 <% if current_user.laboratory == @laboratory %>
 	<%= render :partial => 'mylablibrary' %>
