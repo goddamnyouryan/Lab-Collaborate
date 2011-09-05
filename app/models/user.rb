@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
                     :message => "You must have a .edu email address." },
                     :uniqueness => { :case_sensitive => false }
   
-  after_create :add_name
+  after_create :add_name, :send_welcome_email
   
   def to_param
     "#{id}-#{name.slice(0..40).gsub(/\W/, '-').downcase.gsub(/-{2,}/,'-')}"
@@ -40,6 +40,12 @@ class User < ActiveRecord::Base
       @user = self.update_attributes(:fullname => self.email)
     else
       @user = self.update_attributes(:fullname => [self.first_name, self.last_name].join(" "))
+    end
+  end
+  
+  def send_welcome_email
+    if self.school_id == nil
+      UserMailer.deliver_welcome_notification(self)
     end
   end
   

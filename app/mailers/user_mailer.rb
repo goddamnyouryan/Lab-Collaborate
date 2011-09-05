@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default :from => "no-reply@labcollaborate.com"
+  default :from => "team@labcollaborate.com"
   
   def invite_notification(user, inviter, password)
     @user = user
@@ -18,5 +18,10 @@ class UserMailer < ActionMailer::Base
     @user = user
     @laboratory = laboratory
     mail(:to => "#{@user.name} <#{@user.email}>", :subject => "Your lab is now friends with #{@laboratory.name}")
+  end
+  
+  def welcome_notification(user)
+    @user = user
+    mail(:to => "#{@user.name} <#{@user.email}>", :subject => "Welcome to Lab Collaborate!")
   end
 end
