@@ -7,7 +7,7 @@ class ProtocolsController < ApplicationController
       flash[:notice] = "Successfully uploaded library item."
       redirect_to laboratory_protocols_path(@protocol.laboratory)
     else
-      redirect_to laboratory_protocols_path(@protocol.laboratory), :notice => "Something went wrong. Try again!"
+      redirect_to laboratory_library_path(@protocol.laboratory), :notice => "Something went wrong. Try again!"
     end
   end
   
@@ -15,7 +15,7 @@ class ProtocolsController < ApplicationController
     @protocol = Protocol.find params[:id]
     @laboratory = @protocol.laboratory
     @protocol.destroy
-    redirect_to laboratory_protocols_path(@laboratory), :notice => "Library upload Removed!"
+    redirect_to laboratory_library_path(@laboratory), :notice => "Library upload Removed!"
   end
   
   def edit
@@ -27,7 +27,7 @@ class ProtocolsController < ApplicationController
     @laboratory = @protocol.laboratory
     @protocol.update_attributes(params[:protocol])
     if @protocol.save
-      redirect_to laboratory_protocols_path(@laboratory)
+      redirect_to laboratory_library_path(@laboratory)
     end
   end
 
