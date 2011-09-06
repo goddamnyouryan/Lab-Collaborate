@@ -9,6 +9,15 @@
 			<p>
 	      Dear <%= @user.name %>,
 	    </p>
+	
+			<p>You were signed up to Lab Collaborate by your colleague <%= @inviter.name %>.
+			
+			<p>To sign in and get started visit the <%= link_to "site", root_url %>, and login with these credentials:</p>
+
+			<p><strong>Email Address:</strong> <%= @user.email %></p>
+			<p><strong>Password:</strong> <%= @password %></p>
+
+			<p>Once you login, you'll probably want to change your password to something more memorable!</p>
 			
 			<p>Thanks for signing up with our new network! We hope to make it useful for labs internally and for communicating with other scientists. Here's a quick overview of how it works so far:</p>
 
@@ -26,13 +35,6 @@
 
 			<p>Stay tuned, more features are soon to come!<br />
 			If you have any questions or comments, feel free to email back to this address.</p>
-			
-			<p>To sign in and get started visit the <%= link_to "site", root_url %>, and login with these credentials:</p>
-
-			<p><strong>Email Address:</strong> <%= @user.email %></p>
-			<p><strong>Password:</strong> <%= @password %></p>
-
-			<p>Once you login, you'll probably want to change your password to something more memorable!</p>
 
 			<p>Have fun!<br />
 			The <%= link_to "Lab Collaborate", root_url %> Team</p>
