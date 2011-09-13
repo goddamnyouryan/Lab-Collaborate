@@ -1,9 +1,17 @@
-<% if current_user.laboratory == @laboratory %>
-	<%= render :partial => "mylab" %>
-<% elsif @laboratory.collaborators.include?(current_user.laboratory)  %>
-	<%= render :partial => "friendlab" %>
+<% if user_signed_in? %>
+
+	<% if current_user.laboratory == @laboratory %>
+		<%= render :partial => "mylab" %>
+	<% elsif @laboratory.collaborators.include?(current_user.laboratory)  %>
+		<%= render :partial => "friendlab" %>
+	<% else %>
+		<%= render :partial => "anotherlab" %>
+	<% end %>
+	
 <% else %>
+	
 	<%= render :partial => "anotherlab" %>
+
 <% end %>
 
 <div class="clear"></div>
