@@ -145,7 +145,8 @@ nav#laboratory ul li a:hover {
 }
 p#info {
 	max-height:300px;
-	overflow-y:auto;
+	overflow-y: auto;
+	overflow-x: visible;
 }
 
 strong { font-weight:bold;}

@@ -1,8 +1,8 @@
 <% title "Members of #{@laboratory.name}" %>
 
-<% if current_user.laboratory == @laboratory %>
+<% if user_signed_in? && current_user.laboratory == @laboratory %>
 	<%= render :partial => 'mylabsidenav' %>
-<% elsif @laboratory.collaborators.include?(current_user.laboratory)  %>
+<% elsif user_signed_in? && @laboratory.collaborators.include?(current_user.laboratory)  %>
 	<%= render :partial => "friendlabsidenav" %>
 <% else %>
 	<%= render :partial => "anotherlabsidenav" %>

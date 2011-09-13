@@ -18,19 +18,23 @@
 		</ul>
 	</nav>
 	
-	<p class="ts bs" id="info">
-		<%= @laboratory.info %>
-	</p>
+	<% if user_signed_in? %>
 	
-	<%= render :partial => 'affiliates' %>
+		<p class="ts bs" id="info">
+			<%= @laboratory.info %>
+		</p>
+		
+		<%= render :partial => 'affiliates' %>
 	
-	<h2 class="ts">Friends (<%= @laboratory.collaborators.count %>)</h2>
-	<ul>
-		<% @laboratory.collaborators.each do |friend| %>
-			<li>
-				<%= link_to friend.name, laboratory_path(friend) %>
-			</li>
-		<% end %>
-	</ul>
+		<h2 class="ts">Friends (<%= @laboratory.collaborators.count %>)</h2>
+		<ul>
+			<% @laboratory.collaborators.each do |friend| %>
+				<li>
+					<%= link_to friend.name, laboratory_path(friend) %>
+				</li>
+			<% end %>
+		</ul>
+	
+	<% end %>
 
 </div>
