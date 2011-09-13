@@ -185,3 +185,7 @@ ul#library li em {
 	font-weight:bold;
 	font-size: 18px;
 }
+
+#signed_out_info {
+	width: 685px;
+}
