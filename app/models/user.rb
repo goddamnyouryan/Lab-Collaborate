@@ -25,8 +25,8 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/jpg', 'image/png', 'image/gif']
   
   validates :email, :presence   => true,
-                    :format     => { :with => /\A[\w+\-.]+@[a-z\d\-.]+\.[edu]+\z/i, 
-                    :message => "You must have a .edu email address." },
+                    :format     => { :with => /\A[\w+\-.]+@[a-z\d\-.]+\.[edu|org]+\z/i, 
+                    :message => "You must have a .edu or .org email address." },
                     :uniqueness => { :case_sensitive => false }
   
   after_create :add_name, :send_welcome_email

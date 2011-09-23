@@ -10,12 +10,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110903230731) do
+ActiveRecord::Schema.define(:version => 20110923034712) do
 
   create_table "affiliations", :force => true do |t|
     t.integer  "user_id"
     t.integer  "laboratory_id"
     t.string   "status",        :default => "pending", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "events", :force => true do |t|
+    t.integer  "laboratory_id"
+    t.string   "kind"
+    t.string   "data"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

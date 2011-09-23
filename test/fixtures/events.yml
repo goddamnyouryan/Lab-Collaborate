@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  laboratory_id: 1
+  kind: MyString
+  data: MyString
+
+two:
+  laboratory_id: 1
+  kind: MyString
+  data: MyString
