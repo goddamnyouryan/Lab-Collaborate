@@ -31,7 +31,8 @@
 			<% elsif event.kind == "whiteboard" %>
 				<li>
 					<%= link_to "#{event.data["name"]}", user_path(User.find(event.data["user"])) %> posted on 
-					<%= link_to "#{event.laboratory.name}'s", event.laboratory %> whiteboard.
+					<%= link_to "#{event.laboratory.name}'s", event.laboratory %> whiteboard:
+					<p class="ts bs"><em>"<%= event.data["message"] %>"</em></p>
 					<%= time_ago_in_words(event.created_at) %> ago.
 				</li>
 				<% elsif event.kind == "profile" %>

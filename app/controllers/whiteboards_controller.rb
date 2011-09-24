@@ -20,7 +20,7 @@ class WhiteboardsController < ApplicationController
   
   def whiteboard_event
     if @whiteboard.private == false
-      @event = @laboratory.events.create(:kind => "whiteboard", :data => { "user" => "#{@whiteboard.user.id}", "name" => "#{@whiteboard.user.name}"})
+      @event = @laboratory.events.create(:kind => "whiteboard", :data => { "user" => "#{@whiteboard.user.id}", "name" => "#{@whiteboard.user.name}", "message" => "#{@whiteboard.message}"})
     end
   end
 
