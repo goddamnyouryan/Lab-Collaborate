@@ -1,4 +1,5 @@
 class ProtocolsController < ApplicationController
+  after_filter :protocol_event, :only => :create
   def create
     @protocol = Protocol.create(params[:protocol])
     @protocol.user_id = current_user.id
@@ -28,6 +29,12 @@ class ProtocolsController < ApplicationController
     @protocol.update_attributes(params[:protocol])
     if @protocol.save
       redirect_to laboratory_library_path(@laboratory)
+    end
+  end
+  
+  def protocol_event
+    if @protocol.private == false
+      @event = @protocol.laboratory.events.create(:kind => "protocol", :data => { "name" => "#{@protocol.name}", "category" => "#{@protocol.category}" })
     end
   end
 

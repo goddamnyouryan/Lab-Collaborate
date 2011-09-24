@@ -3,6 +3,7 @@ class Laboratory < ActiveRecord::Base
   has_many :protocols, :dependent => :destroy
   has_many :whiteboards, :dependent => :destroy
   has_many :inventories, :dependent => :destroy
+  has_many :events, :dependent => :destroy
   
   has_many :affiliations
   has_many :users, :through => :affiliations, :conditions => "status ='accepted'", :dependent => :destroy

@@ -1,0 +1,18 @@
+<% title "Data for #{@laboratory.name} Library" %>
+
+<% if current_user.laboratory == @laboratory %>
+	<%= render :partial => 'mylabsidenav' %>
+<% elsif @laboratory.collaborators.include?(current_user.laboratory) %>
+	<%= render :partial => "friendlabsidenav" %>
+<% end %>
+
+<div class="fl">
+	<%= render :partial => 'users' %>
+
+<h2>Data</h2>
+
+<% if current_user.laboratory == @laboratory %>
+	<%= render :partial => 'mylablibrary' %>
+<% elsif @laboratory.collaborators.include?(current_user.laboratory) %>
+	<%= render :partial => 'friendlablibrary' %>
+<% end %>

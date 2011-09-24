@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110923034712) do
+ActiveRecord::Schema.define(:version => 20110924193722) do
 
   create_table "affiliations", :force => true do |t|
     t.integer  "user_id"
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(:version => 20110923034712) do
   create_table "events", :force => true do |t|
     t.integer  "laboratory_id"
     t.string   "kind"
-    t.string   "data"
+    t.text     "data"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -131,6 +131,7 @@ ActiveRecord::Schema.define(:version => 20110923034712) do
     t.integer  "laboratory_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "private",       :default => false, :null => false
   end
 
 end

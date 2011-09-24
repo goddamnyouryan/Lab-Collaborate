@@ -175,7 +175,7 @@ ul#library-nav li {
 
 ul#library { margin-top: -15px;}
 
-ul#library li {
+ul#library li, ul#activity_stream li {
 	background: #ebebeb;
 	margin-top: 15px;
 	padding: 10px;

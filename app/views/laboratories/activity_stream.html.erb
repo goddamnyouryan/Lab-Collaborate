@@ -1,0 +1,55 @@
+<% title "#{@laboratory.name}'s Activity Stream" %>
+
+<% if user_signed_in? && current_user.laboratory == @laboratory %>
+	<%= render :partial => 'mylabsidenav' %>
+<% elsif user_signed_in? && @laboratory.collaborators.include?(current_user.laboratory)  %>
+	<%= render :partial => "friendlabsidenav" %>
+<% else %>
+	<%= render :partial => "anotherlabsidenav" %>
+<% end %>
+
+<div class="fl">
+
+	<%= render :partial => 'users' %>
+
+	<h2>Activity Stream of <%= link_to @laboratory.name, @laboratory %></h2>
+
+	<ul class="bs" id="activity_stream">
+		<% @activity_stream.each do |event| %>
+			<% if event.kind == "friend" %>
+				<li>
+					<%= link_to "#{event.laboratory.name}", event.laboratory %> is now friends with 
+					<%= link_to "#{event.data["name"]}", laboratory_path("#{event.data["friend"]}") %>.
+					<%= time_ago_in_words(event.created_at) %> ago.
+				</li>
+			<% elsif event.kind == "protocol" %>
+				<li>
+					<%= link_to "#{event.laboratory.name}", event.laboratory %> uploaded a new <%= event.data["category"] %>
+					<%= link_to "#{event.data["name"]}", laboratory_library_path(event.laboratory) %>.
+					<%= time_ago_in_words(event.created_at) %> ago.
+				</li>
+			<% elsif event.kind == "whiteboard" %>
+				<li>
+					<%= link_to "#{event.data["name"]}", user_path(User.find(event.data["user"])) %> posted on 
+					<%= link_to "#{event.laboratory.name}'s", event.laboratory %> whiteboard.
+					<%= time_ago_in_words(event.created_at) %> ago.
+				</li>
+				<% elsif event.kind == "profile" %>
+					<li>
+						<%= link_to "#{event.data["user_name"]}", user_path(User.find(event.data["user_id"])) %> 
+						updated their <%= link_to "profile", user_path(User.find(event.data["user_id"])) %>.
+						<%= time_ago_in_words(event.created_at) %> ago.
+					</li>
+				<% elsif event.kind == "affiliate" %>
+					<li>
+						<%= link_to "#{event.data["name"]}", user_path(User.find(event.data["user_id"])) %> is now a member of
+						<%= link_to event.laboratory.name, event.laboratory %>.
+						<%= time_ago_in_words(event.created_at) %> ago.
+					</li>
+				<% end %>
+		<% end %>
+	</ul>
+	
+</div>
+
+<div class="clear"></div>

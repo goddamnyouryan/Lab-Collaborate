@@ -1,8 +1,10 @@
+<% if user_signed_in? && current_user.id == 33 %>
+
 <% title "Schools Admin" %>
 
 <h2>Schools Admin</h2>
 
-<ul>
+<ul class="ts">
 	<% @schools.each do |school| %>
 		<li>
 			<%= school.name %> - 
@@ -18,3 +20,26 @@
 		</li>
 	<% end %>
 </ul>
+
+<% else %>
+
+<% title "Schools Admin" %>
+
+<h2>Browse Lab Collaborate Schools and Labs</h2>
+
+<ul class="ts">
+	<% @schools.each do |school| %>
+		<li>
+			<%= school.name %>
+				<ul style="margin:0 0 25px 15px;">
+					<% school.laboratories.each do |laboratory| %>
+						<li>
+							<%= link_to laboratory.name, laboratory %>	
+						</li>
+					<% end %>
+				</ul>
+		</li>
+	<% end %>
+</ul>
+
+<% end %>

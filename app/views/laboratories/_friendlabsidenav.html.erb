@@ -7,6 +7,7 @@
 	<nav id="laboratory">
 		<ul>
 			<li><%= link_to_unless_current "Whiteboard", @laboratory %></li>
+			<li><%= link_to_unless_current "Recent Activity", laboratory_activity_stream_path(@laboratory) %></li>
 			<li><%= link_to_unless_current "Lab Members", laboratory_members_path(@laboratory) %></li>
 			<li><%= link_to_unless_current "Libraries", laboratory_library_path(@laboratory) %></li>
 			<% if params[:action] == "library" || params[:action] == "protocols" || params[:action] == "papers" || params[:action] == "presentations" %>
@@ -15,6 +16,8 @@
 					<li><%= link_to_unless_current "Protocols", laboratory_protocols_path(@laboratory) %></li>
 					<li><%= link_to_unless_current "Papers", laboratory_papers_path(@laboratory) %></li>
 					<li><%= link_to_unless_current "Presentations", laboratory_presentations_path(@laboratory) %></li>
+					<li><%= link_to_unless_current "Data", laboratory_data_path(@laboratory) %></li>
+					<li><%= link_to_unless_current "Pictures", laboratory_pictures_path(@laboratory) %></li>
 				</div>
 			<% end %>
 			<% if current_user.role == "admin" %>

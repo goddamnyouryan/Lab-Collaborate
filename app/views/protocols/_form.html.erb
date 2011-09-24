@@ -10,7 +10,7 @@
 		</p>
 		<p>
 			<%= f.label :category %><br />
-			<%= f.select :category, options_for_select(["protocol", "presentation", "paper"], @protocol.category) %>
+			<%= f.select :category, options_for_select(["protocol", "presentation", "paper", "data", "picture"], @protocol.category) %>
 		</p>
 		<p style="margin-top:10px;">
 			<%= f.label :private, "Visible to my lab only." %>

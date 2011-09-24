@@ -1,28 +1,62 @@
 <h2 class="ts">Whiteboard</h2>
 <% form_for @whiteboard do |f| %>
-<%= f.hidden_field :laboratory_id, :value => @laboratory.id %>
-<p><%= f.label :new_message %><br />
-<%= f.text_area :message, :style => "height:100px;" %></p>
-<p><%= f.submit "Post" %></p>
+
+	<%= f.hidden_field :laboratory_id, :value => @laboratory.id %>
+
+	<p>
+		<%= f.label :new_message %><br />
+		<%= f.text_area :message, :style => "height:100px;" %>
+	</p>
+	
+	<% if @laboratory == current_user.laboratory %>
+		<p style="margin-top:10px;">
+			<%= f.label :private, "Visible to my lab only." %>
+			<%= f.check_box :private %>
+		</p>
+	<% end %>
+	
+	<p><%= f.submit "Post" %></p>
+	
 <% end %>
 
 <ul class="ts whiteboard">
-	<% @laboratory.whiteboards.order("created_at DESC").each do |whiteboard| %>
-		<li>
-			<div class="fl">
-				<%= link_to user_path(whiteboard.user) do %>
-					<%= image_tag whiteboard.user.photo.url(:tiny) %>
-				<% end %>
-			</div>
-			<div class="fl whiteboard-post">
-				<%= link_to whiteboard.user.name, user_path(whiteboard.user) %>
-				<%= whiteboard.message %><br />
-				<%= time_ago_in_words(whiteboard.created_at) %> ago
-				<% if whiteboard.user == current_user %>
-					<%= link_to "delete", whiteboard, :method => :delete %>
-				<% end %>
-			</div>
-		</li>
-		<div class="clear"></div>
+	<% if @laboratory == current_user.laboratory %>
+		<% @laboratory.whiteboards.order("created_at DESC").each do |whiteboard| %>
+			<li>
+				<div class="fl">
+					<%= link_to user_path(whiteboard.user) do %>
+						<%= image_tag whiteboard.user.photo.url(:tiny) %>
+					<% end %>
+				</div>
+				<div class="fl whiteboard-post">
+					<%= link_to whiteboard.user.name, user_path(whiteboard.user) %>
+					<%= whiteboard.message %><br />
+					<%= time_ago_in_words(whiteboard.created_at) %> ago
+					<% if whiteboard.user == current_user %>
+						<%= link_to "delete", whiteboard, :method => :delete %>
+					<% end %>
+				</div>
+			</li>
+			<div class="clear"></div>
+		<% end %>
+	<% else %>
+		<% @laboratory.whiteboards.where("private = ?", false).order("created_at DESC").each do |whiteboard| %>
+			<li>
+				<div class="fl">
+					<%= link_to user_path(whiteboard.user) do %>
+						<%= image_tag whiteboard.user.photo.url(:tiny) %>
+					<% end %>
+				</div>
+				<div class="fl whiteboard-post">
+					<%= link_to whiteboard.user.name, user_path(whiteboard.user) %>
+					<%= whiteboard.message %><br />
+					<%= time_ago_in_words(whiteboard.created_at) %> ago
+					<% if whiteboard.user == current_user %>
+						<%= link_to "delete", whiteboard, :method => :delete %>
+					<% end %>
+				</div>
+			</li>
+			<div class="clear"></div>
+		<% end %>
 	<% end %>
 </ul>

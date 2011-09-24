@@ -1,4 +1,7 @@
 class LaboratoriesController < ApplicationController
+  after_filter :friend_event, :only => :accept_friend
+  after_filter :affiliate_event, :only => :accept_affiliate
+  
   def index
   end
 
@@ -67,8 +70,29 @@ class LaboratoriesController < ApplicationController
     @protocols = @laboratory.protocols.where("category = ?", "presentation")
   end
   
+  def data
+    @laboratory = Laboratory.find params[:laboratory_id]
+    @protocol = Protocol.new
+    @protocols = @laboratory.protocols.where("category = ?", "data")
+  end
+  
+  def pictures
+    @laboratory = Laboratory.find params[:laboratory_id]
+    @protocol = Protocol.new
+    @protocols = @laboratory.protocols.where("category = ?", "picture")
+  end
+  
   def members
     @laboratory = Laboratory.find params[:laboratory_id]
+  end
+  
+  def activity_stream
+    @laboratory = Laboratory.find params[:laboratory_id]
+    if user_signed_in? && current_user.laboratory == @laboratory
+    	@activity_stream = Event.where("laboratory_id in (?)", @laboratory.collaborators.map(&:id).push(@laboratory.id)).order("created_at DESC").limit(100)
+    elsif user_signed_in? && @laboratory.collaborators.include?(current_user.laboratory)
+    	@activity_stream = Event.where("laboratory_id = ?", @laboratory.id).order("created_at DESC").limit(100)
+    end
   end
   
   def invite
@@ -84,6 +108,7 @@ class LaboratoriesController < ApplicationController
       @users << user
       affiliation = Affiliation.create(:user_id => user.id, :laboratory_id => current_user.laboratory.id, :status => "accepted")
       UserMailer.deliver_invite_notification(user, current_user, password)
+      @event = current_user.laboratory.events.create(:kind => "affiliate", :data => { "user_id" => "#{user.id}", "name" => "#{email}"})
     end
     redirect_to edit_user_path(@users.first), :notice => "Signed Colleagues up as members of your lab! Now add some info about them!"
   end
@@ -97,6 +122,7 @@ class LaboratoriesController < ApplicationController
   end
   
   def accept_affiliate
+    @laboratory = Laboratory.find params[:laboratory_id]
     @affiliation = Affiliation.find_by_user_id_and_laboratory_id(params[:user_id], params[:laboratory_id])
     @affiliation.update_attributes(:status => "accepted")
     @user = User.find params[:user_id]
@@ -163,6 +189,15 @@ class LaboratoriesController < ApplicationController
       format.js
       format.html { redirect_to edit_laboratory_path(@laboratory) }
     end
+  end
+  
+  def friend_event
+    event = @laboratory.events.create(:kind => "friend", :data => { "friend" => "#{@friend.id}", "name" => "#{@friend.name}" })
+		friend = @friend.events.create(:kind => "friend", :data => { "friend" => "#{@friend.id}", "name" => "#{@friend.name}" } )
+	end
+	
+	def affiliate_event
+	  @event = @laboratory.events.create(:kind => "affiliate", :data => { "user_id" => "#{@user.id}", "name" => "#{@user.name}"})
   end
   
 end

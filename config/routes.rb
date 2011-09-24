@@ -3,7 +3,7 @@ Lab::Application.routes.draw do
   get "whiteboards/create"
   get "protocols/create"
 
-  devise_for :users
+  devise_for :users, :controllers => { :registrations => 'users/registrations' }
   
   match '/choose-university', :to => "home#choose_university", :as => "choose_school"
   match '/find-your-lab', :to => 'home#find_lab', :as => "find_lab"
@@ -29,9 +29,12 @@ Lab::Application.routes.draw do
     get 'protocols'
     get 'papers'
     get 'presentations'
+    get 'data'
+    get 'pictures'
     get 'members'
     get 'invite'
     get 'edit_info'
+    get 'activity_stream'
   end
   resources :protocols
   resources :whiteboards
