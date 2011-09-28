@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :first_name, :last_name, :password, :password_confirmation, :remember_me, :phone, :address, :school_id, :role, :photo, :info, :fullname
   
   belongs_to :school
-  has_many :whiteboards
+  has_many :whiteboards, :dependent => :destroy
   has_many :inventories
   has_many :protocols
   has_one :affiliation
