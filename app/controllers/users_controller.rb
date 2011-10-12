@@ -17,5 +17,13 @@ class UsersController < ApplicationController
       redirect_to root_path, :notice => "You're not allowed there!"
     end
   end
+  
+  def update
+    @user = User.find params[:id]
+    @user.update_attributes(params[:user])
+    if @user.save
+      redirect_to @user, :notice => "#{@user.name}'s profile updated!"
+    end
+  end
 
 end

@@ -105,10 +105,12 @@ class LaboratoriesController < ApplicationController
     @emails.each do |email|
       password = ActiveSupport::SecureRandom.base64(6)
       user = User.create(:email => email, :password => password, :password_confirmation => password, :school_id => current_user.school_id)
-      @users << user
-      affiliation = Affiliation.create(:user_id => user.id, :laboratory_id => current_user.laboratory.id, :status => "accepted")
-      UserMailer.deliver_invite_notification(user, current_user, password)
-      @event = current_user.laboratory.events.create(:kind => "affiliate", :data => { "user_id" => "#{user.id}", "name" => "#{email}"})
+      if user.save
+        @users << user
+        affiliation = Affiliation.create(:user_id => user.id, :laboratory_id => current_user.laboratory.id, :status => "accepted")
+        UserMailer.deliver_invite_notification(user, current_user, password)
+        @event = current_user.laboratory.events.create(:kind => "affiliate", :data => { "user_id" => "#{user.id}", "name" => "#{email}"})
+      end
     end
     redirect_to edit_user_path(@users.first), :notice => "Signed Colleagues up as members of your lab! Now add some info about them!"
   end
