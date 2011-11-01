@@ -6,8 +6,60 @@
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
 
-@users = User.all
+def make_ucsf(user)
+  user.update_attributes(:school_id => 7)
+end
+
+def make_laboratory(laboratory)
+  laboratory.update_attributes(:school_id => 7)
+end
+
+@users = User.where("school_id = ?", 2)
 @users.each do |user|
-  @name = [user.first_name, user.last_name].join(" ")
-  user.update_attributes(:fullname => @name)
+  make_ucsf(user)
+end
+
+@users = User.where("school_id = ?", 17)
+@users.each do |user|
+  make_ucsf(user)
+end
+
+@users = User.where("school_id = ?", 18)
+@users.each do |user|
+  make_ucsf(user)
+end
+
+@users = User.where("school_id = ?", 20)
+@users.each do |user|
+  make_ucsf(user)
+end
+
+@users = User.where("school_id = ?", 26)
+@users.each do |user|
+  make_ucsf(user)
+end
+
+@laboratory = Laboratory.where("school_id = ?", 2)
+@laboratory.each do |laboratory|
+  make_laboratory(laboratory)
+end
+
+@laboratory = Laboratory.where("school_id = ?", 17)
+@laboratory.each do |laboratory|
+  make_laboratory(laboratory)
+end
+
+@laboratory = Laboratory.where("school_id = ?", 18)
+@laboratory.each do |laboratory|
+  make_laboratory(laboratory)
+end
+
+@laboratory = Laboratory.where("school_id = ?", 20)
+@laboratory.each do |laboratory|
+  make_laboratory(laboratory)
+end
+
+@laboratory = Laboratory.where("school_id = ?", 26)
+@laboratory.each do |laboratory|
+  make_laboratory(laboratory)
 end
