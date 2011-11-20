@@ -30,22 +30,43 @@
 				</li>
 			<% elsif event.kind == "whiteboard" %>
 				<li>
-					<%= link_to "#{event.data["name"]}", user_path(User.find(event.data["user"])) %> posted on 
-					<%= link_to "#{event.laboratory.name}'s", event.laboratory %> whiteboard:
+					<% @user = User.find(event.data["user"]) %>
+					<%= link_to user_path(@user) do %>
+						<%= image_tag @user.photo.url(:tiny), :class => "fl" %>
+					<% end %>
+					<span id="activity_string">
+						<%= link_to "#{event.data["name"]}", user_path(@user) %> posted on 
+						<%= link_to "#{event.laboratory.name}'s", event.laboratory %> whiteboard:
+					</span>
+					<div class="clear"></div>
 					<p class="ts bs"><em>"<%= event.data["message"] %>"</em></p>
 					<%= time_ago_in_words(event.created_at) %> ago.
 				</li>
 				<% elsif event.kind == "profile" %>
 					<li>
-						<%= link_to "#{event.data["user_name"]}", user_path(User.find(event.data["user_id"])) %> 
-						updated their <%= link_to "profile", user_path(User.find(event.data["user_id"])) %>.
-						<%= time_ago_in_words(event.created_at) %> ago.
+						<% @user = User.find(event.data["user_id"]) %>
+						<%= link_to user_path(@user) do %>
+							<%= image_tag @user.photo.url(:tiny), :class => "fl"  %>
+						<% end %>
+						<span id="activity_string">
+							<%= link_to "#{event.data["user_name"]}", user_path(@user) %> 
+							updated their <%= link_to "profile", user_path(@user) %>.
+							<%= time_ago_in_words(event.created_at) %> ago.
+						</span>
+						<div class="clear"></div>
 					</li>
 				<% elsif event.kind == "affiliate" %>
 					<li>
-						<%= link_to "#{event.data["name"]}", user_path(User.find(event.data["user_id"])) %> is now a member of
-						<%= link_to event.laboratory.name, event.laboratory %>.
-						<%= time_ago_in_words(event.created_at) %> ago.
+						<% @user = User.find(event.data["user_id"]) %>
+						<%= link_to user_path(@user) do %>
+							<%= image_tag @user.photo.url(:tiny), :class => "fl"  %>
+						<% end %>
+						<span id="activity_string">
+							<%= link_to "#{event.data["name"]}", user_path(@user) %> is now a member of
+							<%= link_to event.laboratory.name, event.laboratory %>.
+							<%= time_ago_in_words(event.created_at) %> ago.
+						</span>
+						<div class="clear"></div>
 					</li>
 				<% end %>
 		<% end %>
