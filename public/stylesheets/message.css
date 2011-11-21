@@ -1,0 +1,78 @@
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, p, blockquote, th, td { margin: 0; padding: 0; }
+ol, ul { list-style: none; }
+address, caption, cite, code, dfn, em, strong, th, var { font-style: normal; font-weight: normal; }
+table { border-collapse: collapse; border-spacing: 0; }
+fieldset, img { border: 0; }
+html,body { height:100%; }
+
+body {
+	color: #959593;
+	font-family: Helvetica, Arial, Sans-Serif;
+	font-size: 14px;
+	padding: 10px 0 0 25px;
+	overflow: hidden;
+}
+
+.clear {
+  clear: both;
+  height: 0;
+  overflow: hidden;
+}
+
+.fl { float: left; }
+.fr { float: right; }
+.ts { margin-top: 25px; }
+.bs { margin-bottom: 25px; }
+.ls { margin-left: 25px; }
+.rs { margin-right: 25px; }
+
+a {
+	color: #2E2E2E;
+	text-decoration:none;
+	cursor: pointer;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:visited {
+	
+}
+
+h1 { }
+h2 { }
+h3 { }
+h4 { }
+h5 { font-size:16px; }
+h6 { }
+
+div#flash_notice {
+	padding: 15px 0;
+	text-align:center;
+	background: #d5ebeb;
+	margin-bottom: 25px;
+}
+
+div#flash_error {
+	padding: 15px 0;
+	text-align:center;
+	background: #eec0e2;
+}
+
+input[type=text] {
+	width: 500px;
+	font-family: Helvetica, Arial, Sans-Serif;
+	font-size: 12px;
+	border: 1px solid #959593;
+	padding: 5px;
+}
+
+textarea {
+	width: 500px;
+	height: 200px;
+	font-family: Helvetica, Arial, Sans-Serif;
+	font-size: 12px;
+	padding: 5px;
+	border: 1px solid #959593;
+}

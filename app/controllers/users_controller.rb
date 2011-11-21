@@ -25,5 +25,21 @@ class UsersController < ApplicationController
       redirect_to @user, :notice => "#{@user.name}'s profile updated!"
     end
   end
+  
+  def message
+    @user = User.find params[:user_id]
+    render :layout => "message"
+  end
+  
+  def send_message
+    @user = User.find params[:user_id]
+    UserMailer.deliver_send_message(@user, current_user, params[:title], params[:message])
+    redirect_to user_message_sent_path(@user)
+  end
+  
+  def message_sent
+    @user = User.find params[:user_id]
+    render :layout => "message"
+  end
 
 end

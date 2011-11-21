@@ -24,4 +24,12 @@ class UserMailer < ActionMailer::Base
     @user = user
     mail(:to => "#{@user.name} <#{@user.email}>", :subject => "Welcome to Lab Collaborate!")
   end
+  def send_message(user, sender, title, message)
+    @user = user
+    @sender = sender
+    @title = title
+    @message = message
+    mail(:to => "#{@user.name} <#{@user.email}>", :subject => "#{@title}", :from => "Lab Collaborate <#{@sender.email}>")
+  end
+  
 end

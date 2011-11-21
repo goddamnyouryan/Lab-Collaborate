@@ -22,7 +22,11 @@ Lab::Application.routes.draw do
   match '/update-school', :to => 'home#update_school'
   
   resources :schools
-  resources :users, :only => ["show", "edit", "update"]
+  resources :users do
+    match "message"
+    match "send_message"
+    match "message_sent"
+  end
   resources :laboratories do
     resources :inventories
     get 'library'

@@ -1,0 +1,18 @@
+<% title "Send message to #{@user.name}" %>
+
+<h2 class="bs">Send message to <%= @user.name %></h2>
+
+<% form_tag user_send_message_path(@user) do %>
+
+	<p class="bs">
+		<%= label_tag :title %><br />
+		<%= text_field_tag :title %>
+	</p>
+	
+	<p class="bs">
+		<%= label_tag :message %><br />
+		<%= text_area_tag :message %>
+	<p>
+		
+	<p><%= submit_tag "Send Message" %></p>
+<% end %>
