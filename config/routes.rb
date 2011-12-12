@@ -1,8 +1,5 @@
 Lab::Application.routes.draw do
 
-  get "whiteboards/create"
-  get "protocols/create"
-
   devise_for :users, :controllers => { :registrations => 'users/registrations' }
   
   match '/choose-university', :to => "home#choose_university", :as => "choose_school"
@@ -20,6 +17,8 @@ Lab::Application.routes.draw do
   match '/mark_as_ordered', :to => 'inventories#mark_as_ordered'
   match '/search', :to => 'home#search'
   match '/update-school', :to => 'home#update_school'
+  match '/reply', :to => 'whiteboards#reply'
+  match '/create_reply', :to => 'whiteboards#create_reply'
   
   resources :schools
   resources :users do

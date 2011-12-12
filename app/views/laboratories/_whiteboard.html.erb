@@ -20,43 +20,5 @@
 <% end %>
 
 <ul class="ts whiteboard">
-	<% if @laboratory == current_user.laboratory %>
-		<% @laboratory.whiteboards.order("created_at DESC").each do |whiteboard| %>
-			<li>
-				<div class="fl">
-					<%= link_to user_path(whiteboard.user) do %>
-						<%= image_tag whiteboard.user.photo.url(:tiny) %>
-					<% end %>
-				</div>
-				<div class="fl whiteboard-post">
-					<%= link_to whiteboard.user.name, user_path(whiteboard.user) %>
-					<%= whiteboard.message %><br />
-					<%= time_ago_in_words(whiteboard.created_at) %> ago
-					<% if whiteboard.user == current_user %>
-						<%= link_to "delete", whiteboard, :method => :delete %>
-					<% end %>
-				</div>
-			</li>
-			<div class="clear"></div>
-		<% end %>
-	<% else %>
-		<% @laboratory.whiteboards.where("private = ?", false).order("created_at DESC").each do |whiteboard| %>
-			<li>
-				<div class="fl">
-					<%= link_to user_path(whiteboard.user) do %>
-						<%= image_tag whiteboard.user.photo.url(:tiny) %>
-					<% end %>
-				</div>
-				<div class="fl whiteboard-post">
-					<%= link_to whiteboard.user.name, user_path(whiteboard.user) %>
-					<%= whiteboard.message %><br />
-					<%= time_ago_in_words(whiteboard.created_at) %> ago
-					<% if whiteboard.user == current_user %>
-						<%= link_to "delete", whiteboard, :method => :delete %>
-					<% end %>
-				</div>
-			</li>
-			<div class="clear"></div>
-		<% end %>
-	<% end %>
+	<%= nested_messages @whiteboards %>
 </ul>

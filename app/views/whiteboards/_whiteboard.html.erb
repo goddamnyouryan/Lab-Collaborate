@@ -1,0 +1,18 @@
+<li id="whiteboard_<%= whiteboard.id %>">
+	<div class="fl">
+		<%= link_to user_path(whiteboard.user) do %>
+			<%= image_tag whiteboard.user.photo.url(:tiny) %>
+		<% end %>
+	</div>
+	<div class="fl whiteboard-post">
+		<%= link_to whiteboard.user.name, user_path(whiteboard.user) %>
+		<%= whiteboard.message %><br />
+		<%= time_ago_in_words(whiteboard.created_at) %> ago
+		<br />
+		<%= link_to "reply", reply_path(:parent_id => whiteboard, :laboratory_id => whiteboard.laboratory_id), :remote => true %>
+		<% if whiteboard.user == current_user %>
+			<%= link_to "delete", whiteboard, :method => :delete %>
+		<% end %>
+	</div>
+</li>
+<div class="clear"></div>

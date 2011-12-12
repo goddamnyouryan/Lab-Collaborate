@@ -1,0 +1,13 @@
+<% form_for @whiteboard, :url => { :action => "create_reply" }, :html => { :id => "new_reply", :url => create_reply_path }, :remote => true do |f| %>
+
+	<%= f.hidden_field :laboratory_id, :value => params[:laboratory_id] %>
+	<%= f.hidden_field :parent_id, :value => params[:parent_id] %>
+	
+	<p>
+		<%= f.label :new_message, "Reply" %><br />
+		<%= f.text_area :message, :style => "height:100px;" %>
+	</p>
+	
+	<p><%= f.submit "Post" %></p>
+	
+<% end %>

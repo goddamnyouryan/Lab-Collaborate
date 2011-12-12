@@ -40,6 +40,11 @@ class LaboratoriesController < ApplicationController
   def show
     @laboratory = Laboratory.find params[:id]
     @whiteboard = Whiteboard.new
+    if @laboratory == current_user.laboratory
+      @whiteboards = @laboratory.whiteboards.order.arrange(:order => "created_at DESC")
+    else
+      @whiteboards = @laboratory.whiteboards.where("private = ?", false).arrange(:order => "created_at DESC")
+    end
   end
   
   def library
