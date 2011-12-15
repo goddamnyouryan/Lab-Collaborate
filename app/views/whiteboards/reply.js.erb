@@ -1,1 +1,1 @@
-$("#whiteboard_<%= params[:parent_id] %>").next().after("<%= escape_javascript(render :partial => 'reply') %>");
+$("#whiteboard_<%= params[:parent_id] %>").after("<%= escape_javascript(render :partial => 'reply') %>");
