@@ -211,3 +211,7 @@ span#activity_string {
 .nested_messages .nested_messages .nested_messages .nested_messages {
   margin-left: 0;
 }
+
+p#caption {
+	max-width: 640px;
+}

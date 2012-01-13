@@ -16,7 +16,7 @@
 	
 	<% unless @laboratory.results_of_the_week.nil? %>
 		<%= image_tag @laboratory.results_of_the_week.attachment.url(:large) %>
-		<p><%= @laboratory.results_of_the_week.caption %></p>
+		<p id="caption"><%= @laboratory.results_of_the_week.caption %></p>
 		<%= render :partial => 'likes' %>
 	<% else %>
 		<h3 class="ts">You haven't uploaded a Results of the Week image yet</h3>
