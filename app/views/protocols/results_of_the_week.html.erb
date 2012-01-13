@@ -1,0 +1,51 @@
+<% title "Results of the Week for #{@laboratory.name}" %>
+
+<% if user_signed_in? && current_user.laboratory == @laboratory %>
+	<%= render :partial => 'laboratories/mylabsidenav' %>
+<% elsif user_signed_in? && @laboratory.collaborators.include?(current_user.laboratory)  %>
+	<%= render :partial => "laboratories/friendlabsidenav" %>
+<% else %>
+	<%= render :partial => "laboratories/anotherlabsidenav" %>
+<% end %>
+
+<div class="fl">
+
+	<%= render :partial => 'laboratories/users' %>
+
+	<h2>Results of the Week for <%= @laboratory.name %></h2>
+	
+	<% unless @laboratory.results_of_the_week.nil? %>
+		<%= image_tag @laboratory.results_of_the_week.attachment.url(:large) %>
+		<p><%= @laboratory.results_of_the_week.caption %></p>
+		<%= render :partial => 'likes' %>
+	<% else %>
+		<h3 class="ts">You haven't uploaded a Results of the Week image yet</h3>
+	<% end %>
+	
+	
+	<% if user_signed_in? && @laboratory == current_user.laboratory %>
+	
+		<%= form_for @protocol, :html => { :multipart => true, :class => "ts" } do |f| %>
+			
+			<h2>New Results of the Week</h2>
+			<h4>Upload an image to showcase your latest results</h4>
+		
+			<p class="ts">
+				<%= f.label :attachment %><br />
+				<%= f.file_field :attachment %>
+			</p>
+			
+			<p>
+				<%= f.label :caption %><br />
+				<%= f.text_field :caption %>
+			<p>
+				
+			<p><%= f.submit "Upload" %>
+		
+		<% end %>
+
+	<% end %>
+	
+</div>
+
+<div class="clear"></div>

@@ -14,17 +14,27 @@
 					<li><%= link_to "I work in this lab", add_affiliate_path(:laboratory_id => @laboratory.id) %></li>
 				<% end %>
 			<% end %>
-				<li id="friend"><%= render :partial => 'friend' %></li>
+				<li id="friend"><%= render :partial => 'laboratories/friend' %></li>
 		</ul>
 	</nav>
 	
-	<% if user_signed_in? %>
-	
-		<p class="ts bs" id="info">
-			<%= @laboratory.info %>
+	<% unless @laboratory.results_of_the_week.nil? %>
+		<p class="ts bs">
+			<%= link_to laboratory_results_of_the_week_path(@laboratory) do %>
+				<h2>Results of the Week</h2>
+				<%= image_tag @laboratory.results_of_the_week.attachment.url(:tiny) %><br />
+				<%= @laboratory.results_of_the_week.caption %>
+			<% end %>
 		</p>
+	<% end %>
+	
+	<p class="ts bs" id="info">
+		<%= @laboratory.info %>
+	</p>
+	
+	<% if user_signed_in? %>
 		
-		<%= render :partial => 'affiliates' %>
+		<%= render :partial => 'laboratories/affiliates' %>
 	
 		<h2 class="ts">Friends (<%= @laboratory.collaborators.count %>)</h2>
 		<ul>

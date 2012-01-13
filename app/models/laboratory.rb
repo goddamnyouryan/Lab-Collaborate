@@ -17,6 +17,10 @@ class Laboratory < ActiveRecord::Base
 	def to_param
     "#{id}-#{name.slice(0..40).gsub(/\W/, '-').downcase.gsub(/-{2,}/,'-')}"
   end
+  
+  def results_of_the_week
+    @result = self.protocols.where("caption IS NOT NULL").order("created_at DESC").limit(1).first
+  end
 	
 	def add_friend(friend, user)
 	  @friend1 = Friend.create(:laboratory_id => self.id, :friend_id => friend.id, :user_id => user.id, :status => "requested")

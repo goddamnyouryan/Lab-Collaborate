@@ -38,8 +38,12 @@ Lab::Application.routes.draw do
     get 'invite'
     get 'edit_info'
     get 'activity_stream'
+    match 'results_of_the_week', :to => 'protocols#results_of_the_week'
+    match 'upload_results', :to => 'protocols#upload_results'
   end
-  resources :protocols
+  resources :protocols do
+    resources :likes, :only => [:create, :destroy]
+  end
   resources :whiteboards
   
   root :to => "home#index"

@@ -68,6 +68,13 @@
 						</span>
 						<div class="clear"></div>
 					</li>
+				<% elsif event.kind == "results_of_the_week" %>
+					<li>
+						<%= link_to "#{event.laboratory.name}", event.laboratory %> uploaded a new 
+						<%= link_to "results of the week.",laboratory_results_of_the_week_path(event.laboratory) %>
+						<%= time_ago_in_words(event.created_at) %> ago.
+						<div class="clear"></div>
+					</li>
 				<% end %>
 		<% end %>
 	</ul>

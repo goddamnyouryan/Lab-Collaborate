@@ -27,11 +27,26 @@
 		</ul>
 	</nav>
 	
+	<% unless @laboratory.results_of_the_week.nil? %>
+		<p class="ts bs">
+			<%= link_to laboratory_results_of_the_week_path(@laboratory) do %>
+				<h2>Results of the Week</h2>
+				<%= image_tag @laboratory.results_of_the_week.attachment.url(:tiny) %><br />
+				<%= @laboratory.results_of_the_week.caption %>
+			<% end %>
+		</p>
+	<% else %>
+		<p class="ts bs">
+			<h2>Results of the Week</h2>
+			<%= link_to "Click here", laboratory_results_of_the_week_path(@laboratory) %> to upload your results from this week.
+		</p>
+	<% end %>
+	
 	<p class="ts bs" id="info">
 		<%= @laboratory.info %> <%= link_to "(edit)", laboratory_edit_info_path(@laboratory), :remote => true %>
 	</p>
 	
-	<%= render :partial => 'affiliates' %>
+	<%= render :partial => 'laboratories/affiliates' %>
 	
 	<h2 class="ts">Friends (<%= @laboratory.collaborators.count %>)</h2>
 	<ul>

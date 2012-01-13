@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   has_many :whiteboards, :dependent => :destroy
   has_many :inventories
   has_many :protocols
+  has_many :likes
   has_one :affiliation
   has_one :laboratory, :through => :affiliation, :conditions => "status = 'accepted'"
   has_one :pending_laboratory, :through => :affiliation, :source => :laboratory, :conditions => "status ='pending'"
