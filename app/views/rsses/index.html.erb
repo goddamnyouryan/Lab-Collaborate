@@ -6,12 +6,12 @@
 	<p class ="ts bs"><%= link_to "Manage Feeds", new_rss_path %></p>
 <% end %>
 
-<div class="fl ts">
+<div class="fl ts sidebar">
 	
 	<h3>Feeds in this list</h3>
 	<ul>
 		<% @rss.each do |rss| %>
-			<li>
+			<li style="margin-bottom:10px;">
 				<% @feed = Feedzirra::Feed.fetch_and_parse(rss.feed)%>
 				<h4><%= link_to "#{@feed.title}", rss_path(rss) %></h4>
 			</li>

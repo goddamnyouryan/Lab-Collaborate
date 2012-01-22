@@ -227,3 +227,7 @@ ul#feed li img {
 ul#feed li:hover {
 	background: #ccc;
 }
+
+.sidebar {
+	max-width: 220px;
+}
