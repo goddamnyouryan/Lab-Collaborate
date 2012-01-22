@@ -1,0 +1,27 @@
+<% title "Feeds" %>
+
+<h2>Your Feeds</h2>
+
+<% if user_signed_in? && (current_user.id == 33 || current_user.id == 55 || current_user.email == "macinne4@msu.edu") %>
+	<p class ="ts bs"><%= link_to "Manage Feeds", new_rss_path %></p>
+<% end %>
+
+<div class="fl ts">
+	
+	<h3>Feeds in this list</h3>
+	<ul>
+		<% @rss.each do |rss| %>
+			<li>
+				<% @feed = Feedzirra::Feed.fetch_and_parse(rss.feed)%>
+				<h4><%= link_to "#{@feed.title}", rss_path(rss) %></h4>
+			</li>
+		<% end %>
+	</ul>
+
+</div>
+
+<ul id="feed" class="fr">
+	<%= render :partial => "feeds", :collection => @entries, :as => :entry %>
+</ul>
+
+<div class="clear"></div>

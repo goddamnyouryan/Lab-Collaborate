@@ -1,0 +1,11 @@
+<li>
+	<%= link_to entry.url do %>
+		<h3><%= entry.title %></h3>
+		<% if entry.summary.nil? %>
+			<p><%= entry.content.html_safe %></p>
+		<% else %>
+			<p><%= entry.summary.html_safe %></p>
+		<% end %>
+		<p class="ts" style="font-size:10px; color: #666;">by <%= entry.author %> from <%= entry.url %></p>
+	<% end %>
+</li>

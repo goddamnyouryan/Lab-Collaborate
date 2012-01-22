@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120113062928) do
+ActiveRecord::Schema.define(:version => 20120121231644) do
 
   create_table "affiliations", :force => true do |t|
     t.integer  "user_id"
@@ -78,6 +78,12 @@ ActiveRecord::Schema.define(:version => 20120113062928) do
     t.string   "category",                :default => "protocol", :null => false
     t.boolean  "private",                 :default => false,      :null => false
     t.string   "caption"
+  end
+
+  create_table "rsses", :force => true do |t|
+    t.string   "feed"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "schools", :force => true do |t|

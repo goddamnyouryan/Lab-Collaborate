@@ -184,7 +184,7 @@ ul#library-nav li {
 
 ul#library { margin-top: -15px;}
 
-ul#library li, ul#activity_stream li {
+ul#library li, ul#activity_stream li, ul#feed li {
 	background: #ebebeb;
 	margin-top: 15px;
 	padding: 10px;
@@ -214,4 +214,16 @@ span#activity_string {
 
 p#caption {
 	max-width: 640px;
+}
+
+ul#feed li a:hover {
+	text-decoration: none;
+}
+
+ul#feed li img {
+	max-width: 665px;
+}
+
+ul#feed li:hover {
+	background: #ccc;
 }

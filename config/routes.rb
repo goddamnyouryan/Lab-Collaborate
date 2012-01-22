@@ -45,6 +45,8 @@ Lab::Application.routes.draw do
     resources :likes, :only => [:create, :destroy]
   end
   resources :whiteboards
+  resources :rsses
+  match 'rss', :to => 'rsses#index'
   
   root :to => "home#index"
   
