@@ -22,6 +22,7 @@
 		<li>
 			<% rss = Feedzirra::Feed.fetch_and_parse(feed.feed) %>
 			<%= link_to "#{rss.title}", rss_path(feed) %>
+			- <%= link_to "Delete", rss_path(feed), :method => :delete %>
 		</li>
 	<% end %>
 </ul>
