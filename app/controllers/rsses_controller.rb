@@ -6,7 +6,7 @@ class RssesController < ApplicationController
     @rss.each do |rss|
       feed = Feedzirra::Feed.fetch_and_parse(rss.feed)
       feed.entries.each do |entry|
-        unless.entry.published.nil?
+        unless entry.published.nil?
           @entries << entry
         end
       end
