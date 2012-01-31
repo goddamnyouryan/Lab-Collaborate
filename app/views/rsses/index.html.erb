@@ -14,6 +14,9 @@
 			<li style="margin-bottom:10px;">
 				<% @feed = Feedzirra::Feed.fetch_and_parse(rss.feed)%>
 				<h4><%= link_to "#{@feed.title}", rss_path(rss) %></h4>
+				<% if user_signed_in? && (current_user.id == 33 || current_user.id == 55 || current_user.email == "macinne4@msu.edu") %>
+					<%= link_to "Delete", rss_path(rss), :method => :delete %>
+				<% end %>
 			</li>
 		<% end %>
 	</ul>

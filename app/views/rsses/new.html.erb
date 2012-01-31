@@ -6,6 +6,8 @@
 
 <% form_for @rss do |f| %>
 
+<p><%= f.error_messages %></p>
+
 	<p>
 		<%= f.label :feed, "Feed URL" %><br />
 		<%= f.text_field :feed %>
@@ -14,15 +16,3 @@
 	<p><%= f.submit %></p>
 	
 <% end %>
-
-<h3>All Current Feeds</h3>
-
-<ul>
-	<% @feeds.each do |feed| %>
-		<li>
-			<% rss = Feedzirra::Feed.fetch_and_parse(feed.feed) %>
-			<%= link_to "#{rss.title}", rss_path(feed) %>
-			- <%= link_to "Delete", rss_path(feed), :method => :delete %>
-		</li>
-	<% end %>
-</ul>
