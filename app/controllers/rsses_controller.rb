@@ -6,7 +6,9 @@ class RssesController < ApplicationController
     @rss.each do |rss|
       feed = Feedzirra::Feed.fetch_and_parse(rss.feed)
       feed.entries.each do |entry|
-        @entries << entry
+        unless.entry.published.nil?
+          @entries << entry
+        end
       end
     end
     @entries = @entries.sort_by{ |entry| entry.published }.reverse
