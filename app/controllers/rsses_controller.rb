@@ -14,7 +14,6 @@ class RssesController < ApplicationController
 
   def new
     @rss = Rss.new
-    @feeds = Rss.where("feed IS NOT NULL")
   end
 
   def create
