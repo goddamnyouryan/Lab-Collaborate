@@ -1,6 +1,6 @@
 <li>
 	<%= link_to entry.url do %>
-		<% unless entry.content.nil? %>
+		<% unless entry.content.nil? && entry.summary.nil? %>
 			<h3><%= entry.title %></h3>
 			<% if entry.summary.nil? %>
 				<p><%= entry.content.html_safe %></p>
