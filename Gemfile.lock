@@ -55,6 +55,10 @@ GEM
       nokogiri (> 0.0.0)
       sax-machine (>= 0.0.12)
     i18n (0.6.0)
+    kaminari (0.13.0)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      railties (>= 3.0.0)
     loofah (1.2.0)
       nokogiri (>= 1.4.4)
     mail (2.2.19)
@@ -110,6 +114,7 @@ DEPENDENCIES
   cancan
   devise
   feedzirra
+  kaminari
   nifty-generators
   paperclip
   pg

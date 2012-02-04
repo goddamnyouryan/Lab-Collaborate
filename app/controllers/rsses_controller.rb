@@ -12,6 +12,7 @@ class RssesController < ApplicationController
       end
     end
     @entries = @entries.sort_by{ |entry| entry.published }.reverse
+    @entries = Kaminari.paginate_array(@entries).page(params[:page]).per(25)
   end
 
   def new

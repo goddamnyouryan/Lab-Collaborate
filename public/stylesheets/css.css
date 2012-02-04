@@ -75,7 +75,7 @@ header {
 }
 
 header nav { text-align: right; margin-top: 40px; float:right;}
-header nav ul { }
+header nav ul { font-size: 12px; }
 header nav ul li { display: inline; margin-right:10px;}
 
 header h1 {
@@ -222,7 +222,13 @@ ul#feed li a:hover {
 
 ul#feed li img {
 	max-width: 665px;
+	float: left;
+	margin: 0 10px 10px 0;
 }
+
+ul#feed li p { float: left; }
+
+ul#feed li p:after { clear: both; }
 
 ul#feed li:hover {
 	background: #ccc;
@@ -230,4 +236,8 @@ ul#feed li:hover {
 
 .sidebar {
 	max-width: 220px;
+}
+
+nav.pagination {
+	margin: 50px 0 15px 225px;
 }
