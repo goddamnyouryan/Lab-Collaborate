@@ -1,0 +1,5 @@
+<% if current_user.rsses.include?(feed) %>
+	<%= link_to "Unfollow", follow_path(feed), :method => :delete %>
+<% else %>
+	<%= link_to "Follow", follows_path(:feed_id => feed.id), :method => :post %>
+<% end %>

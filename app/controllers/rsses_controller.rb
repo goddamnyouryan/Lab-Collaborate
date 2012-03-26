@@ -1,7 +1,12 @@
 class RssesController < ApplicationController
   
   def index
-    @rss = Rss.all
+    if user_signed_in?
+      @rss = current_user.rsses
+    else
+      @rss = Rss.all
+    end
+    @all = Rss.all
     @entries = Array.new
     @rss.each do |rss|
       feed = Feedzirra::Feed.fetch_and_parse(rss.feed)

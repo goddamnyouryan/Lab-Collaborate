@@ -1,5 +1,9 @@
 Lab::Application.routes.draw do
 
+  get "follows/create"
+
+  get "follows/destroy"
+
   devise_for :users, :controllers => { :registrations => 'users/registrations' }
   
   match '/choose-university', :to => "home#choose_university", :as => "choose_school"
@@ -21,6 +25,7 @@ Lab::Application.routes.draw do
   match '/create_reply', :to => 'whiteboards#create_reply'
   
   resources :schools
+  resources :follows, :only => [ :create, :destroy ]
   resources :users do
     match "message"
     match "send_message"
