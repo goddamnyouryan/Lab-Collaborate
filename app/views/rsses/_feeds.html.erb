@@ -1,5 +1,5 @@
 <li>
-	<%= link_to entry.url do %>
+	<%= link_to entry.url, :target => "_blank" do %>
 		<% unless entry.content.nil? && entry.summary.nil? %>
 			<h3><%= entry.title %></h3>
 			<% if entry.summary.nil? %>
