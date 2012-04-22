@@ -3,6 +3,8 @@ class RssesController < ApplicationController
   def index
     if user_signed_in?
       @rss = current_user.rsses
+      @your_feeds = current_user.rsses
+      @other_feeds = Rss.all - @your_feeds
     else
       @rss = Rss.all
     end
@@ -34,7 +36,12 @@ class RssesController < ApplicationController
   end
 
   def show
+    @all = Rss.all
     @feed = Feedzirra::Feed.fetch_and_parse((Rss.find params[:id]).feed)
+    if user_signed_in?
+      @your_feeds = current_user.rsses
+      @other_feeds = @all - @your_feeds
+    end
   end
 
   def destroy

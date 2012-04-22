@@ -1,11 +1,15 @@
 <% title "#{@feed.title}" %>
 
+<%= render :partial => 'nav' %>
+
 <h2><%= @feed.title %></h2>
 
 <% if user_signed_in? && (current_user.id == 33 || current_user.id == 55 || current_user.email == "macinne4@msu.edu") %>
 	<p class="bs"><%= link_to "Delete This Feed", rss_path(Rss.find params[:id]), :method => :delete %></p>
 <% end %>
 
-<ul id="feed">
+<ul id="feed" class="fr">
 		<%= render :partial => "feeds", :collection => @feed.entries, :as => :entry %>
 </ul>
+
+<div class="clear"></div>

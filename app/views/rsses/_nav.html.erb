@@ -1,0 +1,39 @@
+<div class="fl ts sidebar">
+
+<% if user_signed_in? %>
+
+	<% if user_signed_in? && (current_user.id == 33 || current_user.id == 55 || current_user.email == "macinne4@msu.edu") %>
+		<p class ="ts bs"><%= link_to "Manage Feeds", new_rss_path %></p>
+	<% end %>
+
+	<% unless @your_feeds.size < 1 %>
+
+		<h2>Your Feeds</h2>
+	
+			<ul class="bs">
+				<%= render :partial => 'list', :collection => @your_feeds, :as => :rss %>
+			</ul>
+			
+	<% end %>
+	
+	<% if @your_feeds.size < 1 %>
+		<h2>All Feeds</h2>
+	<% else %>
+		<h2>Other Feeds</h2>
+	<% end %>
+
+		<ul>
+			<%= render :partial => 'list', :collection => @other_feeds, :as => :rss %>
+		</ul>
+		
+<% else %>
+
+	<h2>Feeds</h2>
+
+			<ul>
+				<%= render :partial => 'list', :collection => @all, :as => :rss %>
+			</ul>
+
+<% end %>
+
+</div>
