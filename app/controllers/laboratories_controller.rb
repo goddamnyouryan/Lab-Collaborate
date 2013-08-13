@@ -108,7 +108,9 @@ class LaboratoriesController < ApplicationController
     @emails = params[:emails].gsub(/\s+/, "").split(",")
     @users = Array.new
     @emails.each do |email|
-      unless user.find_by_email(email).present?
+      if User.find_by_email(email).present?
+        user = User.find_by_email email
+      else
         password = ActiveSupport::SecureRandom.base64(6)
         user = User.create(:email => email, :password => password, :password_confirmation => password, :school_id => current_user.school_id)
       end

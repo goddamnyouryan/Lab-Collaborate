@@ -3,16 +3,16 @@ development:
   encoding: unicode
   database: lab_dev
   pool: 5
-  username: ryan
-  password: postgres
+  username: sharpei
+  password:
 
 test:
     adapter: postgresql
     encoding: unicode
     database: lab_test
     pool: 5
-    username: ryan
-    password: postgres
+    username: sharpei
+    password:
 
 production:
     adapter: postgresql
