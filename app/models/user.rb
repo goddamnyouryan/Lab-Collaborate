@@ -9,14 +9,14 @@ class User < ActiveRecord::Base
   
   belongs_to :school
   has_many :whiteboards, :dependent => :destroy
-  has_many :inventories
-  has_many :protocols
-  has_many :likes
-  has_one :affiliation
+  has_many :inventories, :dependent => :destroy
+  has_many :protocols, :dependent => :destroy
+  has_many :likes, :dependent => :destroy
+  has_one :affiliation, :dependent => :destroy
   has_one :laboratory, :through => :affiliation, :conditions => "status = 'accepted'"
   has_one :pending_laboratory, :through => :affiliation, :source => :laboratory, :conditions => "status ='pending'"
-  has_many :follows
-  has_many :rsses, :through => :follows
+  has_many :follows, :dependent => :destroy
+  has_many :rsses, :through => :follows, :dependent => :destroy
   
   has_attached_file :photo, :styles => { :thumb => "90x90#", :main => "180x300>", :tiny => "45x45#" }, 
                             :storage => :s3, 
