@@ -1,2 +1,2 @@
-access_key_id: AKIAJ2VXOJBAKFYA6H4Q
-secret_access_key: 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
+access_key_id: AKIAJTTWXS4V7XVFJN6Q
+secret_access_key: <%= ENV['GODDAMNYOURYAN_S3_SECRET_ACCESS_KEY'] %>
