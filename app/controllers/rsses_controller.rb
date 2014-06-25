@@ -1,5 +1,5 @@
 class RssesController < ApplicationController
-  
+
   def index
     if user_signed_in?
       @rss = current_user.rsses
@@ -11,7 +11,7 @@ class RssesController < ApplicationController
     @all = Rss.all
     @entries = Array.new
     @rss.each do |rss|
-      feed = Feedzirra::Feed.fetch_and_parse(rss.feed)
+      feed = Feedjira::Feed.fetch_and_parse(rss.feed)
       feed.entries.each do |entry|
         unless entry.published.nil?
           @entries << entry
@@ -37,7 +37,7 @@ class RssesController < ApplicationController
 
   def show
     @all = Rss.all
-    @feed = Feedzirra::Feed.fetch_and_parse((Rss.find params[:id]).feed)
+    @feed = Feedjira::Feed.fetch_and_parse((Rss.find params[:id]).feed)
     if user_signed_in?
       @your_feeds = current_user.rsses
       @other_feeds = @all - @your_feeds
