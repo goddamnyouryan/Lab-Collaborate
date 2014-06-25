@@ -54,7 +54,7 @@ GEM
       curb (~> 0.8.1)
       loofah (~> 2.0.0)
       sax-machine (~> 0.2.1)
-    i18n (0.6.10)
+    i18n (0.6.9)
     json (1.8.1)
     kaminari (0.13.0)
       actionpack (>= 3.0.0)
@@ -118,6 +118,7 @@ DEPENDENCIES
   cancan
   devise
   feedjira
+  i18n (= 0.6.9)
   kaminari
   nifty-generators
   paperclip
